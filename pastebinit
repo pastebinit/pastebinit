@@ -17,9 +17,17 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-from configparser import SafeConfigParser
-from urllib.parse import urlencode
-from urllib.request import FancyURLopener
+from __future__ import print_function
+
+import sys
+if sys.version[0] == "2":
+    from ConfigParser import SafeConfigParser
+    from urllib import urlencode
+    from urllib import FancyURLopener
+else:
+    from configparser import SafeConfigParser
+    from urllib.parse import urlencode
+    from urllib.request import FancyURLopener
 
 # Set the default pastebin
 defaultPB = "http://pastebin.com"
@@ -43,7 +51,6 @@ try:
     import os
     import re
     import socket
-    import sys
     import xml.dom.minidom
 
     try:
