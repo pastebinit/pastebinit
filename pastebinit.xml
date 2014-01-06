@@ -4,7 +4,7 @@
   <!ENTITY dhfirstname "<firstname>Stephane</firstname>">
   <!ENTITY dhsurname   "<surname>Graber</surname>">
   <!-- Please adjust the date whenever revising the manpage. -->
-  <!ENTITY dhdate      "<date>January 06, 2013</date>">
+  <!ENTITY dhdate      "<date>January 06, 2014</date>">
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
   <!ENTITY dhemail     "<email>stgraber@ubuntu.com</email>">
   <!ENTITY dhusername  "Stephane Graber">
@@ -22,7 +22,7 @@
       &dhemail;
     </address>
     <copyright>
-      <year>2007-2013</year>
+      <year>2007-2014</year>
       <holder>&dhusername;</holder>
     </copyright>
     &dhdate;
