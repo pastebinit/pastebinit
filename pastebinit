@@ -81,7 +81,7 @@ try:
                 continue
 
             for fileitem in confdirlist:
-                if fileitem.startswith('.'):
+                if fileitem.startswith('.') or not fileitem.endswith('.conf'):
                     continue
 
                 filename = os.path.join(confdir, fileitem)
