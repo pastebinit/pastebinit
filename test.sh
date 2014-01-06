@@ -4,8 +4,14 @@ teststring="blah blah blah"
 for pastebin in $(./pastebinit -l | egrep "^-" | sed "s/^- //g")
 do
     echo "Trying http://$pastebin"
-    URL=$(echo -e "$teststring\n$teststring\n$teststring" | ./pastebinit -b http://$pastebin)
-    out=$(wget -O - -q "$URL" | grep "$teststring")
+    URL=$(echo "$teststring\n$teststring\n$teststring" | ./pastebinit -b http://$pastebin)
+
+    if [ "$pastebin" = "paste.ubuntu.org.cn" ]; then
+        out=$(wget -O - -q "$URL" | gzip -d | grep "$teststring")
+    else
+        out=$(wget -O - -q "$URL" | grep "$teststring")
+    fi
+
     if [ -n "$out" ]; then
         echo "PASS: http://$pastebin ($URL)"
     else
