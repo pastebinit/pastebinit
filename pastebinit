@@ -72,7 +72,9 @@ try:
         for confdir in ['/usr/share/pastebin.d', '/etc/pastebin.d',
                         '/usr/local/etc/pastebin.d',
                         os.path.expanduser('~/.pastebin.d'),
-                        os.path.join(os.path.dirname(__file__), 'pastebin.d')]:
+                        os.path.join(
+                            os.path.dirname(
+                                os.path.realpath(__file__)), 'pastebin.d')]:
             try:
                 confdirlist = os.listdir(confdir)
             except OSError:
