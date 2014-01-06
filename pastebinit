@@ -123,16 +123,18 @@ try:
                       password):
         "Return the parameters array for the selected pastebin"
         params = {}
-        for pastebin in pastebind:
-            if re.search(pastebind[pastebin].get('pastebin', 'regexp'),
-                         website):
+        for paste_name, paste_config in pastebind.items():
+            basename = paste_config.get('pastebin', 'basename')
+            if basename == website or paste_name == website:
+                website = "http://%s" % basename
 
-                if pastebind[pastebin].has_option('pastebin', 'sizelimit'):
-                    params['sizelimit'] = pastebind[pastebin].get('pastebin',
-                                                                  'sizelimit')
+            if re.search(paste_config.get('pastebin', 'regexp'), website):
+                if paste_config.has_option('pastebin', 'sizelimit'):
+                    params['sizelimit'] = paste_config.get('pastebin',
+                                                           'sizelimit')
 
-                for param in pastebind[pastebin].options('format'):
-                    paramname = pastebind[pastebin].get('format', param)
+                for param in paste_config.options('format'):
+                    paramname = paste_config.get('format', param)
                     if param == 'user':
                         params[paramname] = user
                     elif param == 'content':
@@ -155,10 +157,9 @@ try:
                     elif param == 'jabberid':
                         params[paramname] = jabberid
                     else:
-                        params[paramname] = pastebind[pastebin].get('defaults',
-                                                                    param)
+                        params[paramname] = paste_config.get('defaults', param)
         if params:
-            return params
+            return website, params
         else:
             print(_("Unknown website, please post a bugreport to request "
                     "this pastebin to be added (%s)") % website,
@@ -327,9 +328,9 @@ try:
         sys.exit(1)
 
     # Get the parameter array
-    params = getParameters(website, pastebind, content, user, jabberid,
-                           version, format, parentpid, permatag, title,
-                           username, password)
+    website, params = getParameters(website, pastebind, content, user,
+                                    jabberid, version, format, parentpid,
+                                    permatag, title, username, password)
 
     if not website.endswith("/"):
         website += "/"
