@@ -50,7 +50,7 @@ try:
     except ImportError:
         json = None
 
-    _ = gettext
+    _ = gettext.gettext
     gettext.textdomain("pastebinit")
 
     # Version number to show in the usage
@@ -160,8 +160,10 @@ try:
         if params:
             return params
         else:
-            sys.exit(_("Unknown website, please post a bugreport to request "
-                       "this pastebin to be added (%s)") % website)
+            print(_("Unknown website, please post a bugreport to request "
+                    "this pastebin to be added (%s)") % website,
+                  file=sys.stderr)
+            sys.exit(1)
 
     #XML Handling methods
     def getText(nodelist):
@@ -229,7 +231,8 @@ try:
         f.close()
         gotconfigxml = True
     except KeyboardInterrupt:
-        sys.exit(_("KeyboardInterrupt caught."))
+        print(_("KeyboardInterrupt caught."), file=sys.stderr)
+        sys.exit(1)
     except:
         gotconfigxml = False
 
@@ -246,22 +249,24 @@ try:
                 except:
                     pass
         except KeyboardInterrupt:
-            sys.exit(_("KeyboardInterrupt caught."))
+            print(_("KeyboardInterrupt caught."), file=sys.stderr)
+            sys.exit(1)
         except:
-            print(_("Error parsing configuration file!"))
+            print(_("Error parsing configuration file!"), file=sys.stderr)
             print(_("Please ensure that your configuration file looks "
-                    "similar to the following:"))
-            print(configexample)
+                    "similar to the following:"), file=sys.stderr)
+            print(configexample, file=sys.stderr)
             sys.exit(1)
 
     # Get options
     try:
         optlist, list = getopt.getopt(sys.argv[1:], 'hli:f:b:a:r:j:t:m:u:p:')
     except KeyboardInterrupt:
-        sys.exit(_("KeyboardInterrupt caught."))
+        print(_("KeyboardInterrupt caught."), file=sys.stderr)
+        sys.exit(1)
     except getopt.GetoptError:
-        print(_("Invalid arguments!\n"))
-        Usage()
+        print(_("Invalid arguments!\n"), file=sys.stderr)
+        Usage(sys.stderr)
         sys.exit(1)
 
     # Get the config
@@ -271,7 +276,7 @@ try:
     for opt in optlist:
         if opt[0] == "-h":
             Usage()
-            sys.exit(1)
+            sys.exit(0)
         if opt[0] == "-i":
             filename = opt[1]
         elif opt[0] == "-f":
@@ -311,11 +316,15 @@ try:
             content = f.read()
             f.close()
         except KeyboardInterrupt:
-            sys.exit(_("KeyboardInterrupt caught."))
+            print(_("KeyboardInterrupt caught."), file=sys.stderr)
+            sys.exit(1)
         except:
-            sys.exit(_("Unable to read from: %s") % filename)
+            print(_("Unable to read from: %s") % filename, file=sys.stderr)
+            sys.exit(1)
     if not content:
-        sys.exit(_("You are trying to send an empty document, exiting."))
+        print(_("You are trying to send an empty document, exiting."),
+              file=sys.stderr)
+        sys.exit(1)
 
     # Get the parameter array
     params = getParameters(website, pastebind, content, user, jabberid,
@@ -327,8 +336,9 @@ try:
 
     if "sizelimit" in params:
         if len(content) > int(params['sizelimit']):
-            sys.exit(_("The content you are trying to send exceeds "
-                       "the pastebin's size limit."))
+            print(_("The content you are trying to send exceeds "
+                    "the pastebin's size limit."), file=sys.stderr)
+            sys.exit(1)
         else:
             del params['sizelimit']
 
@@ -359,13 +369,18 @@ try:
             params = json.dumps(params)
             url_opener.addheader('Content-type', 'text/json')
         else:
-            sys.exit(_("Could not find any json library."))
+            print(_("Could not find any json library."), file=sys.stderr)
+            sys.exit(1)
     else:
         # Convert to a format usable with the HTML POST
         params = urlencode(params)
 
     # Send the informations and be redirected to the final page
-    page = url_opener.open(website, params)
+    try:
+        page = url_opener.open(website, params)
+    except Exception as e:
+        print(_("Failed to contact the server: %s") % e, file=sys.stderr)
+        sys.exit(1)
 
     try:
         # Check if we have to apply a regexp
@@ -385,11 +400,14 @@ try:
             # Get the final page and show the url
             print(page.url)
     except KeyboardInterrupt:
-        sys.exit(_("KeyboardInterrupt caught."))
+        print(_("KeyboardInterrupt caught."), file=sys.stderr)
+        sys.exit(1)
     except:
-        sys.exit(_("Unable to read or parse the result page, it could be a "
-                   "server timeout or a change server side, "
-                   "try with another pastebin."))
+        print(_("Unable to read or parse the result page, it could be a "
+                "server timeout or a change server side, "
+                "try with another pastebin."), file=sys.stderr)
+        sys.exit(1)
 
 except KeyboardInterrupt:
-    sys.exit(_("KeyboardInterrupt caught."))
+    print(_("KeyboardInterrupt caught."), file=sys.stderr)
+    sys.exit(1)
