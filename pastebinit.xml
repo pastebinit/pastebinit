@@ -96,6 +96,9 @@
         <varlistentry>
           <term><option>-p <arg>password</arg></option> (default: none)</term>
         </varlistentry>
+        <varlistentry>
+          <term><option>-v</option> Version number</term>
+        </varlistentry>
       </variablelist>
     </refsect2>
   </refsect1>
