@@ -188,8 +188,8 @@ try:
     # Display usage instructions
     def Usage():
         print("pastebinit v" + version)
-        print(_(
-            "Reads on stdin for input or takes a filename as first parameter"))
+        print(_("Reads on stdin for input or takes a list of filenames "
+                "as parameters"))
         print(_("Optional arguments (not supported by all pastebins):"))
         print(_("\t-a <author:default is '%s'>") % user)
         print(_("\t-b <pastebin url:default is '%s'>") % website)
@@ -213,7 +213,7 @@ try:
     format = "text"
     username = ""
     password = ""
-    filename = ""
+    filenames = []
     content = ""
     parentpid = ""
 
@@ -263,7 +263,8 @@ try:
 
     # Get options
     try:
-        optlist, list = getopt.getopt(sys.argv[1:], 'hli:f:b:a:r:j:t:m:u:p:')
+        optlist, arglist = getopt.getopt(sys.argv[1:],
+                                         'hli:f:b:a:r:j:t:m:u:p:')
     except KeyboardInterrupt:
         print(_("KeyboardInterrupt caught."), file=sys.stderr)
         sys.exit(1)
@@ -281,7 +282,7 @@ try:
             Usage()
             sys.exit(0)
         if opt[0] == "-i":
-            filename = opt[1]
+            filenames.append(opt[1])
         elif opt[0] == "-f":
             format = opt[1]
         elif opt[0] == "-b":
@@ -306,110 +307,118 @@ try:
         elif opt[0] == "-p":
             password = opt[1]
 
-    if filename == "" and len(list) >= 1:
-        filename = list[0]
+    filenames += arglist
 
-    # If - is specified as a filename read from stdin
-    # otherwise load the specified file.
-    if (filename == "" or filename == "-") and content == "":
-        content = sys.stdin.read()
-    elif content == "":
+    if not filenames:
+        filenames.append("-")
+
+    contents = []
+    for filename in filenames:
+        # If - is specified as a filename read from stdin
+        # otherwise load the specified files.
+        if filename == "-":
+            content = sys.stdin.read()
+        else:
+            try:
+                f = open(filename)
+                content = f.read()
+                f.close()
+            except KeyboardInterrupt:
+                print(_("KeyboardInterrupt caught."), file=sys.stderr)
+                sys.exit(1)
+            except:
+                print(_("Unable to read from: %s") % filename, file=sys.stderr)
+                sys.exit(1)
+
+        if not content:
+            print(_("You are trying to send an empty document, exiting."),
+                  file=sys.stderr)
+            sys.exit(1)
+
+        contents.append(content)
+
+    for content in contents:
+        # Get the parameter array
+        website, params = getParameters(website, pastebind, content, user,
+                                        jabberid, version, format, parentpid,
+                                        permatag, title, username, password)
+
+        if not website.endswith("/"):
+            website += "/"
+
+        if "sizelimit" in params:
+            if len(content) > int(params['sizelimit']):
+                print(_("The content you are trying to send exceeds "
+                        "the pastebin's size limit."), file=sys.stderr)
+                sys.exit(1)
+            else:
+                del params['sizelimit']
+
+        reLink = None
+        tmp_page = ""
+        if "page" in params:
+            website += params['page']
+            tmp_page = params['page']
+            del params["page"]
+        if "regexp" in params:
+            reLink = params['regexp']
+            del params["regexp"]
+        if "target_url" in params:
+            target_url = params["target_url"]
+            del params["target_url"]
+        else:
+            target_url = None
+        if 'post_format' in params:
+            post_format = params['post_format']
+            del params['post_format']
+        else:
+            post_format = 'standard'
+
+        url_opener = pasteURLopener()
+
+        if post_format == 'json':
+            if json:
+                params = json.dumps(params)
+                url_opener.addheader('Content-type', 'text/json')
+            else:
+                print(_("Could not find any json library."), file=sys.stderr)
+                sys.exit(1)
+        else:
+            # Convert to a format usable with the HTML POST
+            params = urlencode(params)
+
+        # Send the informations and be redirected to the final page
         try:
-            f = open(filename)
-            content = f.read()
-            f.close()
+            page = url_opener.open(website, params)
+        except Exception as e:
+            print(_("Failed to contact the server: %s") % e, file=sys.stderr)
+            sys.exit(1)
+
+        try:
+            # Check if we have to apply a regexp
+            if reLink:
+                if target_url:
+                    website = target_url
+                else:
+                    website = website.replace(tmp_page, "")
+
+                if reLink == '(.*)':
+                    print(page.read().decode('utf-8').strip())
+                else:
+                    # Print the result of the regexp
+                    print(website + re.split(reLink,
+                          page.read().decode('utf-8'))[1])
+            else:
+                # Get the final page and show the url
+                print(page.url)
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
             sys.exit(1)
         except:
-            print(_("Unable to read from: %s") % filename, file=sys.stderr)
+            print(_("Unable to read or parse the result page, it could be a "
+                    "server timeout or a change server side, "
+                    "try with another pastebin."), file=sys.stderr)
             sys.exit(1)
-    if not content:
-        print(_("You are trying to send an empty document, exiting."),
-              file=sys.stderr)
-        sys.exit(1)
-
-    # Get the parameter array
-    website, params = getParameters(website, pastebind, content, user,
-                                    jabberid, version, format, parentpid,
-                                    permatag, title, username, password)
-
-    if not website.endswith("/"):
-        website += "/"
-
-    if "sizelimit" in params:
-        if len(content) > int(params['sizelimit']):
-            print(_("The content you are trying to send exceeds "
-                    "the pastebin's size limit."), file=sys.stderr)
-            sys.exit(1)
-        else:
-            del params['sizelimit']
-
-    reLink = None
-    tmp_page = ""
-    if "page" in params:
-        website += params['page']
-        tmp_page = params['page']
-        del params["page"]
-    if "regexp" in params:
-        reLink = params['regexp']
-        del params["regexp"]
-    if "target_url" in params:
-        target_url = params["target_url"]
-        del params["target_url"]
-    else:
-        target_url = None
-    if 'post_format' in params:
-        post_format = params['post_format']
-        del params['post_format']
-    else:
-        post_format = 'standard'
-
-    url_opener = pasteURLopener()
-
-    if post_format == 'json':
-        if json:
-            params = json.dumps(params)
-            url_opener.addheader('Content-type', 'text/json')
-        else:
-            print(_("Could not find any json library."), file=sys.stderr)
-            sys.exit(1)
-    else:
-        # Convert to a format usable with the HTML POST
-        params = urlencode(params)
-
-    # Send the informations and be redirected to the final page
-    try:
-        page = url_opener.open(website, params)
-    except Exception as e:
-        print(_("Failed to contact the server: %s") % e, file=sys.stderr)
-        sys.exit(1)
-
-    try:
-        # Check if we have to apply a regexp
-        if reLink:
-            if target_url:
-                website = target_url
-            else:
-                website = website.replace(tmp_page, "")
-
-            if reLink == '(.*)':
-                print(page.read().decode('utf-8').strip())
-            else:
-                # Print the result of the regexp
-                print(website + re.split(reLink,
-                      page.read().decode('utf-8'))[1])
-        else:
-            # Get the final page and show the url
-            print(page.url)
-    except KeyboardInterrupt:
-        print(_("KeyboardInterrupt caught."), file=sys.stderr)
-        sys.exit(1)
-    except:
-        print(_("Unable to read or parse the result page, it could be a "
-                "server timeout or a change server side, "
-                "try with another pastebin."), file=sys.stderr)
-        sys.exit(1)
 
 except KeyboardInterrupt:
     print(_("KeyboardInterrupt caught."), file=sys.stderr)
