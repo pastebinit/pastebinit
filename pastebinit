@@ -88,12 +88,12 @@ try:
 
                 if not instance.has_section('pastebin'):
                     print(_('%s: no section [pastebin]') % filename,
-                            file=sys.stderr)
+                          file=sys.stderr)
                     continue
 
                 if not instance.has_option('pastebin', 'basename'):
                     print(_("%s: no 'basename' in [pastebin]") % filename,
-                            file=sys.stderr)
+                          file=sys.stderr)
                     continue
 
                 pastebind[instance.get('pastebin', 'basename')] = instance
@@ -109,8 +109,8 @@ try:
         url_opener = pasteURLopener()
         page = url_opener.open(website + '/' + parentid, None)
         matches = re.split('<input.*?name="' + paramname + '".*?value="(.*?)"',
-                            page.read())
-        if len(matches) <= 1 or re.match(parentid, matches[1]) == None:
+                           page.read())
+        if len(matches) <= 1 or re.match(parentid, matches[1]) is None:
             # The obfuscated version didn't begin with the partial version,
             # or unable to find the obfuscated version for some reason!
             # Create a paste with no parent (should we throw, instead?)
@@ -119,17 +119,17 @@ try:
 
     #Return the parameters depending of the pastebin used
     def getParameters(website, pastebind, content, user, jabberid, version,
-                        format, parentpid, permatag, title, username,
-                        password):
+                      format, parentpid, permatag, title, username,
+                      password):
         "Return the parameters array for the selected pastebin"
         params = {}
         for pastebin in pastebind:
             if re.search(pastebind[pastebin].get('pastebin', 'regexp'),
-              website):
+                         website):
 
                 if pastebind[pastebin].has_option('pastebin', 'sizelimit'):
                     params['sizelimit'] = pastebind[pastebin].get('pastebin',
-                                                                'sizelimit')
+                                                                  'sizelimit')
 
                 for param in pastebind[pastebin].options('format'):
                     paramname = pastebind[pastebin].get('format', param)
@@ -145,7 +145,7 @@ try:
                         params[paramname] = format
                     elif param == 'parentpid':
                         params[paramname] = doParentFixup(website, paramname,
-                                                            parentpid)
+                                                          parentpid)
                     elif param == 'permatag':
                         params[paramname] = permatag
                     elif param == 'username':
@@ -156,12 +156,12 @@ try:
                         params[paramname] = jabberid
                     else:
                         params[paramname] = pastebind[pastebin].get('defaults',
-                                                                        param)
+                                                                    param)
         if params:
             return params
         else:
             sys.exit(_("Unknown website, please post a bugreport to request "
-                        "this pastebin to be added (%s)") % website)
+                       "this pastebin to be added (%s)") % website)
 
     #XML Handling methods
     def getText(nodelist):
@@ -193,7 +193,7 @@ try:
         print(_("\t-i <input file>"))
         print(_("\t-l List all supported pastebins"))
         print(_("\t-j <jabberid for notifications:default is '%s'>") %
-                    jabberid)
+              jabberid)
         print(_("\t-m <permatag for all versions of a post:default is blank>"))
         print(_("\t-r <parent posts ID:defaults to none>"))
         print(_("\t-t <title of paste:default is blank>"))
@@ -238,8 +238,8 @@ try:
         try:
             configxml = xml.dom.minidom.parseString(configtext)
             for variable, key in (('pastebin', 'website'), ('author', 'user'),
-                                ('format', 'format'),
-                                ('jabberid', 'jabberid')):
+                                  ('format', 'format'),
+                                  ('jabberid', 'jabberid')):
                 try:
                     value = getFirstNodeText(configxml, variable)
                     vars()[key] = value
@@ -249,8 +249,8 @@ try:
             sys.exit(_("KeyboardInterrupt caught."))
         except:
             print(_("Error parsing configuration file!"))
-            print(_(
-"Please ensure that your configuration file looks similar to the following:"))
+            print(_("Please ensure that your configuration file looks "
+                    "similar to the following:"))
             print(configexample)
             sys.exit(1)
 
@@ -319,16 +319,16 @@ try:
 
     # Get the parameter array
     params = getParameters(website, pastebind, content, user, jabberid,
-                                version, format, parentpid, permatag, title,
-                                username, password)
+                           version, format, parentpid, permatag, title,
+                           username, password)
 
     if not website.endswith("/"):
         website += "/"
 
     if "sizelimit" in params:
         if len(content) > int(params['sizelimit']):
-            sys.exit(_(
-"The content you are trying to send exceeds the pastebin's size limit."))
+            sys.exit(_("The content you are trying to send exceeds "
+                       "the pastebin's size limit."))
         else:
             del params['sizelimit']
 
@@ -380,7 +380,7 @@ try:
             else:
                 # Print the result of the regexp
                 print(website + re.split(reLink,
-                        page.read().decode('utf-8'))[1])
+                      page.read().decode('utf-8'))[1])
         else:
             # Get the final page and show the url
             print(page.url)
