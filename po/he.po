@@ -1,16 +1,16 @@
-# Po file for pastebinit
-# Copyright (C) 2007, Pastebinit Developers Team
-# Vinzenz Vietzke <vinz@v1nz.org>, 2008
-#
+# Hebrew translation for pastebinit
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the pastebinit package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pastebinit 0.8.1\n"
-"Report-Msgid-Bugs-To: pastebinit@packages.debian.org\n"
+"Project-Id-Version: pastebinit\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-06 23:31+0000\n"
-"PO-Revision-Date: 2012-02-17 11:36+0000\n"
-"Last-Translator: Hendrik Knackstedt <Unknown>\n"
-"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"PO-Revision-Date: 2010-02-22 13:45+0000\n"
+"Last-Translator: Omri Strumza <blueomega@gmail.com>\n"
+"Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,24 +19,23 @@ msgstr ""
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
-msgstr "%s: Kein [pastebin]-Abschnitt"
+msgstr ""
 
 #: ../pastebinit:110
 msgid "%s: no 'basename' in [pastebin]"
-msgstr "%s: Kein 'basename' in [pastebin]"
+msgstr ""
 
 #: ../pastebinit:139
 #, docstring
 msgid "Return the parameters array for the selected pastebin"
-msgstr "Die Parameter für den ausgewählten Pastebin ausgeben"
+msgstr "החזר את מערך הפרמטרים עבור ה-pastebin הנבחר"
 
 #: ../pastebinit:179
 msgid ""
 "Unknown website, please post a bugreport to request this pastebin to be "
 "added (%s)"
 msgstr ""
-"Unbekannte Webseite.  Bitte senden Sie einen Fehlerbericht, damit dieser "
-"Pastebin hinzugefügt werden kann (%s)"
+"אתר אינו ידוע, נא לשים לב לכתוב על בעיה זו על מנת לבקש כי pastebin יוספו (%s)"
 
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
@@ -45,53 +44,50 @@ msgstr ""
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
 msgstr ""
-"Zusätzliche Argumente, die nicht von allen Pastebin verstanden werden:"
 
 #: ../pastebinit:208
 msgid "\t-a <author:default is '%s'>"
-msgstr "\t-a <Autor: Vorgabe ist '%s'>"
+msgstr "\t-a <author:default הוא'%s'>"
 
 #: ../pastebinit:209
 msgid "\t-b <pastebin url:default is '%s'>"
-msgstr "\t-b <Pastebin-URL: Vorgabe ist '%s'>"
+msgstr "\t-b <pastebin url\":ברירת המחדל היא is %s>"
 
 #: ../pastebinit:210
 msgid "\t-f <format of paste:default is '%s'>"
-msgstr "\t-f<Format des Dokuments: Vorgabe ist '%s'>"
+msgstr "\t-f <פורמט הדבקה: ברירת המחדל היא  '%s'>"
 
 #: ../pastebinit:211
 msgid "\t-h This help screen"
-msgstr "\t-h Diese Hilfe anzeigen"
+msgstr "\t-h מסך עזרה זה"
 
 #: ../pastebinit:212
 msgid "\t-i <input file>"
-msgstr "\t-i <Eingabedatei>"
+msgstr ""
 
 #: ../pastebinit:213
 msgid "\t-l List all supported pastebins"
-msgstr "\t-l Liste der unterstützen Pastebins"
+msgstr ""
 
 #: ../pastebinit:214
 msgid "\t-j <jabberid for notifications:default is '%s'>"
-msgstr "\t-j <Jabber-ID für Benachrichtigungen: Vorgabe ist '%s'>"
+msgstr ""
 
 #: ../pastebinit:216
 msgid "\t-m <permatag for all versions of a post:default is blank>"
 msgstr ""
-"\t-m <Dauerhafte Kennzeichnung für alle Versionen eines Beitrags: Vorgabe "
-"ist leer>"
 
 #: ../pastebinit:218
 msgid "\t-r <parent posts ID:defaults to none>"
-msgstr "\t-r <ID des Elternbeitrags: keine Vorgabe>"
+msgstr "\t-r <מזהה פוסט אב: ברירת המחדל ללא>"
 
 #: ../pastebinit:219
 msgid "\t-t <title of paste:default is blank>"
-msgstr "\t-t <Titel des Beitrags: Vorgabe ist leer>"
+msgstr ""
 
 #: ../pastebinit:220
 msgid "\t-u <username> -p <password>"
-msgstr "\t-u <Benutzername> -p <Passwort>"
+msgstr "\t-u <שם משתמש> -p <סיסמא>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
@@ -100,43 +96,40 @@ msgstr ""
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
 msgid "KeyboardInterrupt caught."
-msgstr "Beendet durch manuellen Abbruch."
+msgstr "נתפס KeyboardInterrupt."
 
 #: ../pastebinit:274
 msgid "Error parsing configuration file!"
-msgstr "Fehler beim Auslesen der Konfigurationsdatei!"
+msgstr "שגיאה בניתוח קובץ תצורה!"
 
 #: ../pastebinit:275
 msgid ""
 "Please ensure that your configuration file looks similar to the following:"
-msgstr ""
-"Bitte stellen Sie sicher, dass Ihre Konfigurationsdatei der folgenden ähnelt:"
+msgstr "אנא וודא שקובץ התצורה שלך נראה דומה לבאים:"
 
 #: ../pastebinit:288
 msgid "Invalid arguments!\n"
-msgstr "Ungültige Argumente!\n"
+msgstr "ארגומנטים לא חוקיים!\n"
 
 #: ../pastebinit:313
 msgid "Supported pastebins:"
-msgstr "Unterstützte Pastebins:"
+msgstr ""
 
 #: ../pastebinit:349
 msgid "Unable to read from: %s"
-msgstr "Lesen nicht möglich von: %s"
+msgstr "לא ניתן לקרוא מ:s%"
 
 #: ../pastebinit:353
 msgid "You are trying to send an empty document, exiting."
-msgstr "Sie versuchen ein leeres Dokument zu senden, Abbruch."
+msgstr "הינך מנסה לשלוח מסמך ריק, יוצא."
 
 #: ../pastebinit:370
 msgid "The content you are trying to send exceeds the pastebin's size limit."
 msgstr ""
-"Der von Ihnen gesendete Inhalt überschreitet das Größenlimit des gewählten "
-"Pastebin."
 
 #: ../pastebinit:403
 msgid "Could not find any json library."
-msgstr "Es konnte keine JSON-Bibliothek gefunden werden."
+msgstr ""
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
@@ -147,9 +140,5 @@ msgid ""
 "Unable to read or parse the result page, it could be a server timeout or a "
 "change server side, try with another pastebin."
 msgstr ""
-"Die Ergebnisseite kann nicht gelesen oder ausgewertet werden, dies könnte "
-"durch eine Zeitüberschreitung des Servers oder eine Server-seitige "
-"Veränderung verursacht worden sein. Versuchen Sie einen anderen Pastebin."
-
-#~ msgid "Reads on stdin for input or takes a filename as first parameter"
-#~ msgstr "Standardeingabe oder von Datei als erstem Parameter auslesen"
+"נכשל בקריאת או ניתוח דף התוצאות, יתכן שזה נגמר בגלל שתם הזמן עבור השרת או "
+"שצד השרת השתנה, נסה pastebin אחר."
