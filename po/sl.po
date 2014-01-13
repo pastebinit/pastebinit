@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: pastebinit\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-06 23:31+0000\n"
-"PO-Revision-Date: 2012-02-14 08:56+0000\n"
-"Last-Translator: Andrej Znidarsic <andrej.znidarsic@gmail.com>\n"
+"PO-Revision-Date: 2014-01-12 22:33+0000\n"
+"Last-Translator: Dražen Matešić <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-08 04:34+0000\n"
-"X-Generator: Launchpad (build 16877)\n"
+"X-Launchpad-Export-Date: 2014-01-13 05:15+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -41,6 +41,8 @@ msgstr ""
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
 msgstr ""
+"Prebere iz standardnega vpisa (stdin) za vnos ali vzame seznam imen datotek "
+"kot parametre"
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
@@ -92,7 +94,7 @@ msgstr "\t-u <uporabniško ime> -p <geslo>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr ""
+msgstr "\t-v Izpiši številko različice"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
@@ -135,7 +137,7 @@ msgstr "Najti ni mogoče nobene knjižnice json."
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "Ni mogoče navezati stika s strežnikom: %s"
 
 #: ../pastebinit:437
 msgid ""
