@@ -193,7 +193,7 @@ try:
         for node in nodelist:
             if node.nodeType == node.TEXT_NODE:
                 rc = rc + node.data
-        return rc.encode('utf-8')
+        return rc
 
     def getNodes(nodes, title):
         return nodes.getElementsByTagName(title)
