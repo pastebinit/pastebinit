@@ -99,7 +99,10 @@ try:
 
                 filename = os.path.join(confdir, fileitem)
                 instance = SafeConfigParser()
-                instance.read(filename)
+                try:
+                    instance.read(filename)
+                except UnicodeError:
+                    continue
 
                 if not instance.has_section('pastebin'):
                     print(_('%s: no section [pastebin]') % filename,
