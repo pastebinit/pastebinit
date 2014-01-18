@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-# Written by Stephane Graber <stgraber@stgraber.org>
+# -*- coding: utf-8 -*-
+
+# Author: Stéphane Graber <stgraber@ubuntu.com>
+# Written by Stéphane Graber <stgraber@stgraber.org>
 #            Daniel Bartlett <dan@f-box.org>
 # Last modification : Mon Jan  6 18:46:46 EST 2014
 
@@ -342,9 +345,8 @@ try:
             content = sys.stdin.read()
         else:
             try:
-                f = open(filename)
-                content = f.read()
-                f.close()
+                with open(filename, "rb") as fd:
+                    content = fd.read()
             except KeyboardInterrupt:
                 print(_("KeyboardInterrupt caught."), file=sys.stderr)
                 sys.exit(1)
