@@ -24,11 +24,11 @@ from __future__ import print_function
 
 import sys
 if sys.version[0] == "2":
-    from ConfigParser import SafeConfigParser
+    from ConfigParser import SafeConfigParser, NoOptionError
     from urllib import urlencode
     from urllib import FancyURLopener
 else:
-    from configparser import SafeConfigParser
+    from configparser import SafeConfigParser, NoOptionError
     from urllib.parse import urlencode
     from urllib.request import FancyURLopener
 
@@ -165,7 +165,10 @@ try:
                     elif param == 'version':
                         params[paramname] = version
                     elif param == 'format':
-                        params[paramname] = format
+                        try:
+                            params[paramname] = paste_config.get('defaults', 'format')
+                        except NoOptionError:
+                            params[paramname] = format
                     elif param == 'parentpid':
                         params[paramname] = doParentFixup(website, paramname,
                                                           parentpid)
@@ -213,7 +216,7 @@ try:
               file=fd)
         print(_("\t-a <author:default is '%s'>") % user, file=fd)
         print(_("\t-b <pastebin url:default is '%s'>") % website, file=fd)
-        print(_("\t-f <format of paste:default is '%s'>") % format, file=fd)
+        print(_("\t-f <format of paste:default is '%s' (or from pastebin config)>") % format, file=fd)  # noqa
         print(_("\t-h This help screen"), file=fd)
         print(_("\t-i <input file>"), file=fd)
         print(_("\t-l List all supported pastebins"), file=fd)
