@@ -378,20 +378,26 @@ try:
             else:
                 del params['sizelimit']
 
-        reLink = None
-        tmp_page = ""
         if "page" in params:
-            website += params['page']
-            tmp_page = params['page']
-            del params["page"]
+            # Use page, without leading slash: website has a trailing one.
+            fetch_url = website + params['page'].lstrip("/")
+            del params['page']
+        else:
+            fetch_url = website
         if "regexp" in params:
             reLink = params['regexp']
             del params["regexp"]
-        if "target_url" in params:
-            target_url = params["target_url"]
-            del params["target_url"]
         else:
-            target_url = None
+            reLink = False
+        # Get target_url for replacement, only used with reLink.
+        if "target_url" in params:
+            relink_target_url = params["target_url"]
+            del params["target_url"]
+            if not reLink:
+                print("Warning: using target_url without regexp.",
+                      file=sys.stderr)
+        elif reLink:
+            relink_target_url = website
         if 'post_format' in params:
             post_format = params['post_format']
             del params['post_format']
@@ -413,7 +419,7 @@ try:
 
         # Send the informations and be redirected to the final page
         try:
-            page = url_opener.open(website, params)
+            page = url_opener.open(fetch_url, params)
         except Exception as e:
             print(_("Failed to contact the server: %s") % e, file=sys.stderr)
             sys.exit(1)
@@ -421,16 +427,11 @@ try:
         try:
             # Check if we have to apply a regexp
             if reLink:
-                if target_url:
-                    website = target_url
-                else:
-                    website = website.replace(tmp_page, "")
-
                 if reLink == '(.*)':
                     print(page.read().decode('utf-8').strip())
                 else:
                     # Print the result of the regexp
-                    print(website + re.split(reLink,
+                    print(relink_target_url + re.split(reLink,
                           page.read().decode('utf-8'))[1])
             else:
                 # Get the final page and show the url
