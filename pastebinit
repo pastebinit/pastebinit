@@ -225,6 +225,7 @@ try:
         print(_("\t-t <title of paste:default is blank>"), file=fd)
         print(_("\t-u <username> -p <password>"), file=fd)
         print(_("\t-v Print the version number"), file=fd)
+        print(_("\t--verbose Verbose output to stderr"), file=fd)
 
     # Set defaults
     website = defaultPB
@@ -238,6 +239,7 @@ try:
     filenames = []
     content = ""
     parentpid = ""
+    verbose = False
 
     #Example configuration file string
     configexample = """\
@@ -286,7 +288,8 @@ try:
     # Get options
     try:
         optlist, arglist = getopt.getopt(sys.argv[1:],
-                                         'hvli:f:b:a:r:j:t:m:u:p:')
+                                         'hvli:f:b:a:r:j:t:m:u:p:',
+                                         ('verbose',))
     except KeyboardInterrupt:
         print(_("KeyboardInterrupt caught."), file=sys.stderr)
         sys.exit(1)
@@ -331,6 +334,8 @@ try:
         elif opt[0] == "-v":
             print("pastebinit v" + version)
             sys.exit(0)
+        elif opt[0] == "--verbose":
+            verbose = True
 
     filenames += arglist
 
@@ -412,6 +417,9 @@ try:
             params = urlencode(params)
 
         # Send the informations and be redirected to the final page
+        if verbose:
+            print("POSTing to: %s\nParams: %s" % (
+                website, str(params)), file=sys.stderr)
         try:
             page = url_opener.open(website, params)
         except Exception as e:
