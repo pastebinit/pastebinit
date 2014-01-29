@@ -24,11 +24,11 @@ from __future__ import print_function
 
 import sys
 if sys.version[0] == "2":
-    from ConfigParser import SafeConfigParser
+    from ConfigParser import SafeConfigParser, NoOptionError
     from urllib import urlencode
     from urllib import FancyURLopener
 else:
-    from configparser import SafeConfigParser
+    from configparser import SafeConfigParser, NoOptionError
     from urllib.parse import urlencode
     from urllib.request import FancyURLopener
 
@@ -165,7 +165,10 @@ try:
                     elif param == 'version':
                         params[paramname] = version
                     elif param == 'format':
-                        params[paramname] = format
+                        try:
+                            params[paramname] = paste_config.get('defaults', 'format')
+                        except NoOptionError:
+                            params[paramname] = format
                     elif param == 'parentpid':
                         params[paramname] = doParentFixup(website, paramname,
                                                           parentpid)
@@ -213,7 +216,7 @@ try:
               file=fd)
         print(_("\t-a <author:default is '%s'>") % user, file=fd)
         print(_("\t-b <pastebin url:default is '%s'>") % website, file=fd)
-        print(_("\t-f <format of paste:default is '%s'>") % format, file=fd)
+        print(_("\t-f <format of paste:default is '%s' (or from pastebin config)>") % format, file=fd)  # noqa
         print(_("\t-h This help screen"), file=fd)
         print(_("\t-i <input file>"), file=fd)
         print(_("\t-l List all supported pastebins"), file=fd)
@@ -225,6 +228,7 @@ try:
         print(_("\t-t <title of paste:default is blank>"), file=fd)
         print(_("\t-u <username> -p <password>"), file=fd)
         print(_("\t-v Print the version number"), file=fd)
+        print(_("\t--verbose Verbose output to stderr"), file=fd)
 
     # Set defaults
     website = defaultPB
@@ -238,6 +242,7 @@ try:
     filenames = []
     content = ""
     parentpid = ""
+    verbose = False
 
     #Example configuration file string
     configexample = """\
@@ -286,12 +291,13 @@ try:
     # Get options
     try:
         optlist, arglist = getopt.getopt(sys.argv[1:],
-                                         'hvli:f:b:a:r:j:t:m:u:p:')
+                                         'hvli:f:b:a:r:j:t:m:u:p:',
+                                         ('verbose',))
     except KeyboardInterrupt:
         print(_("KeyboardInterrupt caught."), file=sys.stderr)
         sys.exit(1)
-    except getopt.GetoptError:
-        print(_("Invalid arguments!\n"), file=sys.stderr)
+    except getopt.GetoptError as e:
+        print(_("Invalid arguments: %s!" % e)+"\n", file=sys.stderr)
         Usage(sys.stderr)
         sys.exit(1)
 
@@ -331,6 +337,8 @@ try:
         elif opt[0] == "-v":
             print("pastebinit v" + version)
             sys.exit(0)
+        elif opt[0] == "--verbose":
+            verbose = True
 
     filenames += arglist
 
@@ -378,20 +386,26 @@ try:
             else:
                 del params['sizelimit']
 
-        reLink = None
-        tmp_page = ""
         if "page" in params:
-            website += params['page']
-            tmp_page = params['page']
-            del params["page"]
+            # Use page, without leading slash: website has a trailing one.
+            fetch_url = website + params['page'].lstrip("/")
+            del params['page']
+        else:
+            fetch_url = website
         if "regexp" in params:
             reLink = params['regexp']
             del params["regexp"]
-        if "target_url" in params:
-            target_url = params["target_url"]
-            del params["target_url"]
         else:
-            target_url = None
+            reLink = False
+        # Get target_url for replacement, only used with reLink.
+        if "target_url" in params:
+            relink_target_url = params["target_url"]
+            del params["target_url"]
+            if not reLink:
+                print("Warning: using target_url without regexp.",
+                      file=sys.stderr)
+        elif reLink:
+            relink_target_url = website
         if 'post_format' in params:
             post_format = params['post_format']
             del params['post_format']
@@ -412,8 +426,11 @@ try:
             params = urlencode(params)
 
         # Send the informations and be redirected to the final page
+        if verbose:
+            print("POSTing to: %s\nParams: %s" % (
+                website, str(params)), file=sys.stderr)
         try:
-            page = url_opener.open(website, params)
+            page = url_opener.open(fetch_url, params)
         except Exception as e:
             print(_("Failed to contact the server: %s") % e, file=sys.stderr)
             sys.exit(1)
@@ -421,16 +438,11 @@ try:
         try:
             # Check if we have to apply a regexp
             if reLink:
-                if target_url:
-                    website = target_url
-                else:
-                    website = website.replace(tmp_page, "")
-
                 if reLink == '(.*)':
                     print(page.read().decode('utf-8').strip())
                 else:
                     # Print the result of the regexp
-                    print(website + re.split(reLink,
+                    print(relink_target_url + re.split(reLink,
                           page.read().decode('utf-8'))[1])
             else:
                 # Get the final page and show the url
