@@ -1,5 +1,5 @@
 #!/bin/sh
-teststring="blah blah blah"
+teststring="test from pastebinit"
 
 for interpreter in python python3; do
     for pastebin in $($interpreter pastebinit -l | egrep "^-" | sed "s/^- //g")
