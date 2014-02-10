@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: 0.8.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-06 23:31+0000\n"
-"PO-Revision-Date: 2012-02-14 08:01+0000\n"
+"PO-Revision-Date: 2014-02-09 15:44+0000\n"
 "Last-Translator: Milo Casagrande <milo.casagrande@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 05:13+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2014-02-10 05:23+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -40,6 +40,7 @@ msgstr ""
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
 msgstr ""
+"Legge lo stdin per l'input o accetta un elenco di nomi file come parametri"
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
@@ -92,7 +93,7 @@ msgstr "\t-u <nome_utente> -p <password>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr ""
+msgstr "\t-v Stampa il numero di versione"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
@@ -136,7 +137,7 @@ msgstr "Impossibile trovare alcuna libreria json."
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "Collegamento al server non riuscito: %s"
 
 #: ../pastebinit:437
 msgid ""
