@@ -40,7 +40,7 @@ try:
     import lsb_release
     release = lsb_release.get_distro_information()['ID'].lower()
     if release == 'debian':
-        defaultPB = "http://paste.debian.net"
+        defaultPB = "https://paste.debian.net"
     elif release == 'fedora':
         defaultPB = "http://fpaste.org"
     elif release == 'ubuntu':
