@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 05:13+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2015-09-11 05:12+0000\n"
+"X-Generator: Launchpad (build 17720)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 
@@ -43,6 +43,7 @@ msgstr ""
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
 msgstr ""
+"Girdi için stdin'i okur veya parametre olarak dosya adı listesini alır"
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
@@ -94,7 +95,7 @@ msgstr "\t-u <kullaniciadi> -p <sifre>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr ""
+msgstr "\t-v versiyon sayısını yazdır"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
@@ -137,7 +138,7 @@ msgstr "Herhangi bir json kitaplığı bulunamadı."
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "Sunucuya bağlanma başarısız: %s"
 
 #: ../pastebinit:437
 msgid ""

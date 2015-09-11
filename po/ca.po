@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 05:13+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2015-09-11 05:12+0000\n"
+"X-Generator: Launchpad (build 17720)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -138,7 +138,7 @@ msgstr "No s'ha trobat cap biblioteca per processar JSON."
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "No s'ha pogut contactar amb el servidor: %s"
 
 #: ../pastebinit:437
 msgid ""

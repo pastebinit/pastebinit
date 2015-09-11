@@ -8,13 +8,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-06 23:31+0000\n"
 "PO-Revision-Date: 2009-12-27 02:37+0000\n"
-"Last-Translator: Rex Tsai <Unknown>\n"
+"Last-Translator: Rex Tsai <rex.tsai@canonical.com>\n"
 "Language-Team: Traditional Chinese <debian-chinese-big5@debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 05:13+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2015-09-11 05:12+0000\n"
+"X-Generator: Launchpad (build 17720)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
-msgstr ""
+msgstr "選擇性引數 (並非所有 pastebin 服務都有支援)："
 
 #: ../pastebinit:208
 msgid "\t-a <author:default is '%s'>"
@@ -61,11 +61,11 @@ msgstr "\t-h 本說明"
 
 #: ../pastebinit:212
 msgid "\t-i <input file>"
-msgstr ""
+msgstr "\t-i <輸入檔案>"
 
 #: ../pastebinit:213
 msgid "\t-l List all supported pastebins"
-msgstr ""
+msgstr "\t-l 列出所有支援的 pastebin 服務"
 
 #: ../pastebinit:214
 msgid "\t-j <jabberid for notifications:default is '%s'>"
@@ -89,7 +89,7 @@ msgstr "\t-u <帳號> -p <密碼>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr ""
+msgstr "\t-v 顯示版本號碼"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
@@ -111,7 +111,7 @@ msgstr "參數錯誤!\n"
 
 #: ../pastebinit:313
 msgid "Supported pastebins:"
-msgstr ""
+msgstr "支援的 pastebin 服務："
 
 #: ../pastebinit:349
 msgid "Unable to read from: %s"
@@ -123,15 +123,15 @@ msgstr "您嘗試送出空白文件使得程式結束。"
 
 #: ../pastebinit:370
 msgid "The content you are trying to send exceeds the pastebin's size limit."
-msgstr ""
+msgstr "您正嘗試傳送的內容超過該 pastebin 服務所容許的檔案大小。"
 
 #: ../pastebinit:403
 msgid "Could not find any json library."
-msgstr ""
+msgstr "無法找到任何 json 函式庫。"
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "無法連接伺服器：%s"
 
 #: ../pastebinit:437
 msgid ""

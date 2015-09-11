@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 05:13+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2015-09-11 05:12+0000\n"
+"X-Generator: Launchpad (build 17720)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -41,10 +41,11 @@ msgstr ""
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
 msgstr ""
+"Lukee syötteen sisääntulosta tai ottaa luettelon tiedostoista parametreiksi"
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
-msgstr ""
+msgstr "Vaihtoehtoiset parametrit (kaikki pastebinit eivät tue näitä)"
 
 #: ../pastebinit:208
 msgid "\t-a <author:default is '%s'>"
@@ -60,7 +61,7 @@ msgstr "\t-f <muotoilu:oletus on '%s'>"
 
 #: ../pastebinit:211
 msgid "\t-h This help screen"
-msgstr ""
+msgstr "\t-h Tämä ohje-ruutu"
 
 #: ../pastebinit:212
 msgid "\t-i <input file>"
@@ -114,7 +115,7 @@ msgstr "Epäkelvot argumentit!\n"
 
 #: ../pastebinit:313
 msgid "Supported pastebins:"
-msgstr ""
+msgstr "Tuetut pastebinit:"
 
 #: ../pastebinit:349
 msgid "Unable to read from: %s"
@@ -122,19 +123,19 @@ msgstr "%s:sta ei pystytty lukemaan"
 
 #: ../pastebinit:353
 msgid "You are trying to send an empty document, exiting."
-msgstr ""
+msgstr "Yrität lähettää tyhjän dokumentin, poistutaan."
 
 #: ../pastebinit:370
 msgid "The content you are trying to send exceeds the pastebin's size limit."
-msgstr ""
+msgstr "Sisältö, jonka koetit lähettää, ylittää pastebinin kokorajan."
 
 #: ../pastebinit:403
 msgid "Could not find any json library."
-msgstr ""
+msgstr "Json-kirjastoa ei löytynyt."
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "Yhteys palvelimeen epäonnistui: %s"
 
 #: ../pastebinit:437
 msgid ""

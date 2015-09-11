@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 05:13+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2015-09-11 05:12+0000\n"
+"X-Generator: Launchpad (build 17720)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -41,11 +41,12 @@ msgstr ""
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
 msgstr ""
+"Читає стандартний ввід для уведення або бере перелік імен файлу як параметри"
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
 msgstr ""
-"Додаткові аргументи (можуть не підтримуватися всіма сервісами pastebin)"
+"Додаткові аргументи (можуть не підтримуватися усіма сервісами pastebin)"
 
 #: ../pastebinit:208
 msgid "\t-a <author:default is '%s'>"
@@ -77,7 +78,7 @@ msgstr "\t-j <ідентифікатор jabber для повідомлень: �
 
 #: ../pastebinit:216
 msgid "\t-m <permatag for all versions of a post:default is blank>"
-msgstr "\t-m <permatag для всіх версій запису: типово порожній>"
+msgstr "\t-m <permatag для усіх версій запису: типово порожній>"
 
 #: ../pastebinit:218
 msgid "\t-r <parent posts ID:defaults to none>"
@@ -93,7 +94,7 @@ msgstr "\t-u <ім’я користувача> -p <пароль>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr ""
+msgstr "\t-v Показати номер версії"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
@@ -124,7 +125,7 @@ msgstr "Неможливо прочитати %s"
 
 #: ../pastebinit:353
 msgid "You are trying to send an empty document, exiting."
-msgstr "Ви намагаєтесь надіслати порожній документ, зупиняю роботу."
+msgstr "Ви намагаєтеся надіслати порожній документ, зупиняю роботу."
 
 #: ../pastebinit:370
 msgid "The content you are trying to send exceeds the pastebin's size limit."
@@ -136,7 +137,7 @@ msgstr "Відсутня бібліотека json"
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "Не вдалося під’єднатися до сервера: %s"
 
 #: ../pastebinit:437
 msgid ""
