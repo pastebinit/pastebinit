@@ -147,8 +147,16 @@ try:
         params = {}
         for paste_name, paste_config in pastebind.items():
             basename = paste_config.get('pastebin', 'basename')
+            try:
+                https = paste_config.get('pastebin','https')
+            except:
+                https =  False
+
             if basename == website or paste_name == website:
-                website = "http://%s" % basename
+                if https:
+                    website = "https://%s" % basename
+                else:
+                    website = "http://%s" % basename
 
             if re.search(paste_config.get('pastebin', 'regexp'), website):
                 if paste_config.has_option('pastebin', 'sizelimit'):
@@ -460,8 +468,6 @@ try:
                     print("-" * len(page.url))
                 page_url = page.url
 
-            if website.startswith('https://'):
-                page_url = page_url.replace('http://', 'https://')
             print(page_url.strip())
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
