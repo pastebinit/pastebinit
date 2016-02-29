@@ -130,9 +130,9 @@ try:
         for paste_name, paste_config in pastebind.items():
             basename = paste_config.get('pastebin', 'basename')
             try:
-                https = paste_config.get('pastebin','https')
+                https = paste_config.get('pastebin', 'https')
             except:
-                https =  False
+                https = False
 
             if basename == website or paste_name == website:
                 if https:
