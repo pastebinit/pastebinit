@@ -461,7 +461,7 @@ try:
 
             if website.startswith('https://'):
                 page_url = page_url.replace('http://', 'https://')
-            print(page_url)
+            print(page_url.strip())
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
             sys.exit(1)
