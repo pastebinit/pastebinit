@@ -44,7 +44,7 @@ try:
     elif release == 'fedora':
         defaultPB = "http://fpaste.org"
     elif release == 'ubuntu':
-        defaultPB = "http://paste.ubuntu.com"
+        defaultPB = "https://paste.ubuntu.com"
 except ImportError:
     pass
 

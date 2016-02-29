@@ -20,7 +20,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 PROG=$(basename $0)
-URL="http://paste.ubuntu.com"
+URL="https://paste.ubuntu.com"
 TEMPLATE="$PROG.XXXXXXXXXX"
 [ -d "$TMPDIR" ] && TEMPLATE="$TMPDIR/$TEMPLATE" || TEMPLATE="/tmp/$TEMPLATE"
 
