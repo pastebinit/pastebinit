@@ -124,7 +124,7 @@ try:
     # Return the parameters depending of the pastebin used
     def getParameters(website, pastebind, content, user, jabberid, version,
                       format, permatag, title, username,
-                      password):
+                      password, private):
         "Return the parameters array for the selected pastebin"
         params = {}
         for paste_name, paste_config in pastebind.items():
@@ -163,6 +163,8 @@ try:
                             params[paramname] = format
                     elif param == 'permatag':
                         params[paramname] = permatag
+                    elif param == 'private':
+                        params[paramname] = private
                     elif param == 'username':
                         params[paramname] = username
                     elif param == 'password':
@@ -201,7 +203,7 @@ try:
         print("pastebinit v" + version, file=fd)
         print(_("Reads on stdin for input or takes a list of filenames "
                 "as parameters"), file=fd)
-        print(_("\t-P also print content to standard output"), file=fd)
+        print(_("\t-E also print content to standard output"), file=fd)
         print(_("Optional arguments (not supported by all pastebins):"),
               file=fd)
         print(_("\t-a <author:default is '%s'>") % user, file=fd)
@@ -215,6 +217,7 @@ try:
         print(_("\t-m <permatag for all versions of a post:default is blank>"),
               file=fd)
         print(_("\t-t <title of paste:default is blank>"), file=fd)
+        print(_("\t-P Private. Makes your paste hidden if possible"), file=fd)
         print(_("\t-u <username> -p <password>"), file=fd)
         print(_("\t-v Print the version number"), file=fd)
         print(_("\t--verbose Verbose output to stderr"), file=fd)
@@ -230,6 +233,7 @@ try:
     password = ""
     filenames = []
     content = ""
+    private = 0
     verbose = False
     echo = False
 
@@ -280,7 +284,7 @@ try:
     # Get options
     try:
         optlist, arglist = getopt.getopt(sys.argv[1:],
-                                         'Phvli:f:b:a:j:t:m:u:p:',
+                                         'EPhvli:f:b:a:j:t:m:u:p:',
                                          ('verbose',))
     except KeyboardInterrupt:
         print(_("KeyboardInterrupt caught."), file=sys.stderr)
@@ -300,7 +304,7 @@ try:
             sys.exit(0)
         if opt[0] == "-i":
             filenames.append(opt[1])
-        elif opt[0] == "-P":
+        elif opt[0] == "-E":
             echo = True
         elif opt[0] == "-f":
             format = opt[1]
@@ -319,6 +323,8 @@ try:
             title = opt[1]
         elif opt[0] == "-m":
             permatag = opt[1]
+        elif opt[0] == "-P":
+            private = 1
         elif opt[0] == "-u":
             username = opt[1]
         elif opt[0] == "-p":
@@ -364,7 +370,8 @@ try:
         # Get the parameter array
         website, params = getParameters(website, pastebind, content, user,
                                         jabberid, version, format,
-                                        permatag, title, username, password)
+                                        permatag, title, username, password,
+                                        private)
 
         if not website.endswith("/"):
             website += "/"

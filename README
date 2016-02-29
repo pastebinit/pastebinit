@@ -71,6 +71,8 @@ A number of reserved keywords can be used, but are optional:
 	jabberid -	contains the jabberid for the poster
 			as set at the command line.
 
+	private -	make the paste private if possible
+
 Two additional special parameters are available for use:
 
 	page -		used to specify a page from which to
