@@ -1,11 +1,11 @@
 #!/bin/sh
-teststring="blah blah blah"
+teststring="test from pastebinit"
 
 for interpreter in python python3; do
-    for pastebin in $($interpreter pastebinit -l | egrep "^-" | sed "s/^- //g")
+    for pastebin in $(ls pastebin.d/*.conf | sed 's~^pastebin.d/\(.*\)\.conf$~\1~')
     do
         echo "Trying http://$pastebin ($interpreter)"
-        URL=$(echo "$teststring\n$teststring\n$teststring" | $interpreter pastebinit -b http://$pastebin)
+        URL=$(echo "$teststring\n$teststring\n$teststring" | $interpreter ./pastebinit -b http://$pastebin)
 
         if [ "$pastebin" = "paste.ubuntu.org.cn" ]; then
             out=$(wget -O - -q "$URL" | gzip -d | grep "$teststring")
