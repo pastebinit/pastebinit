@@ -34,18 +34,18 @@ else:
     from urllib.request import FancyURLopener
 
 # Set the default pastebin
-defaultPB = "http://pastebin.com"
+defaultPB = "pastebin.com"
 
 # Now try to override it with a distributor pastebin
 try:
     import platform
     release = platform.linux_distribution()[0].lower()
     if release == 'debian':
-        defaultPB = "https://paste.debian.net"
+        defaultPB = "paste.debian.net"
     elif release == 'fedora':
-        defaultPB = "http://fpaste.org"
+        defaultPB = "fpaste.org"
     elif release == 'ubuntu':
-        defaultPB = "https://paste.ubuntu.com"
+        defaultPB = "paste.ubuntu.com"
 except ImportError:
     pass
 
@@ -259,7 +259,7 @@ try:
     # Example configuration file string
     configexample = """\
 <pastebinit>
-<pastebin>http://paste.debian.net</pastebin>
+<pastebin>paste.debian.net</pastebin>
 <author>A pastebinit user</author>
 <jabberid>nobody@nowhere.org</jabberid>
 <format>text</format>
