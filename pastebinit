@@ -65,7 +65,7 @@ try:
     gettext.textdomain("pastebinit")
 
     # Timeout after 5s
-    socket.setdefaulttimeout(5)
+    socket.setdefaulttimeout(15)
 
     # Version number to show in the usage
     version = "1.4.1"
