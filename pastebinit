@@ -212,6 +212,7 @@ try:
         print("pastebinit v" + version, file=fd)
         print(_("Reads on stdin for input or takes a list of filenames "
                 "as parameters"), file=fd)
+        print(_("\t-P also print content to standard output"), file=fd)
         print(_("Optional arguments (not supported by all pastebins):"),
               file=fd)
         print(_("\t-a <author:default is '%s'>") % user, file=fd)
@@ -243,6 +244,7 @@ try:
     content = ""
     parentpid = ""
     verbose = False
+    echo = False
 
     #Example configuration file string
     configexample = """\
@@ -291,7 +293,7 @@ try:
     # Get options
     try:
         optlist, arglist = getopt.getopt(sys.argv[1:],
-                                         'hvli:f:b:a:r:j:t:m:u:p:',
+                                         'Phvli:f:b:a:r:j:t:m:u:p:',
                                          ('verbose',))
     except KeyboardInterrupt:
         print(_("KeyboardInterrupt caught."), file=sys.stderr)
@@ -311,6 +313,8 @@ try:
             sys.exit(0)
         if opt[0] == "-i":
             filenames.append(opt[1])
+        elif opt[0] == "-P":
+            echo = True
         elif opt[0] == "-f":
             format = opt[1]
         elif opt[0] == "-b":
@@ -368,6 +372,8 @@ try:
             sys.exit(1)
 
         contents.append(content)
+        if echo:
+            print(content)
 
     for content in contents:
         # Get the parameter array
@@ -446,6 +452,8 @@ try:
                           page.read().decode('utf-8'))[1])
             else:
                 # Get the final page and show the url
+                if echo:
+                    print("-" * len(page.url))
                 print(page.url)
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
