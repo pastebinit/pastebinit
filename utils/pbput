@@ -20,7 +20,7 @@
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 PROG=$(basename $0)
-URL="http://pastebin.com"
+URL="http://paste.ubuntu.com"
 TEMPLATE="$PROG.XXXXXXXXXX"
 [ -d "$TMPDIR" ] && TEMPLATE="$TMPDIR/$TEMPLATE" || TEMPLATE="/tmp/$TEMPLATE"
 
@@ -31,8 +31,8 @@ trap "rm -f $TEMP $TEMP2 2>/dev/null || true" EXIT HUP INT QUIT TERM
 
 case "$PROG" in
 	pbget)
-		url=$(echo "$1" | sed -e "s:.com/:.com/download.php?i=:")
-		wget -q -O- "$url" | base64 -d | lzma -d > "$TEMP"
+		url=$(echo "$1")
+		wget -q -O- "$url" | grep -A 999999999 '<div class="paste"><pre>' | grep -B 999999999 "^</pre>" | sed -e "s/.*<pre>//" -e "s/^<\/pre>.*//" | base64 -d | lzma -d > "$TEMP"
 		# Support secure uploads
 		if gpg -d "$TEMP" >"$TEMP2" 2>/dev/null; then
 			# Upload was encrypted
