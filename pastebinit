@@ -234,7 +234,7 @@ try:
 
     # Set defaults
     website = defaultPB
-    user = os.environ.get('USER')
+    user = os.environ.get('USER', os.environ.get('LOGNAME'))
     jabberid = ""
     title = ""
     permatag = ""
