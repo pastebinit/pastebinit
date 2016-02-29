@@ -428,7 +428,7 @@ try:
         # Send the informations and be redirected to the final page
         if verbose:
             print("POSTing to: %s\nParams: %s" % (
-                website, str(params)), file=sys.stderr)
+                fetch_url, str(params)), file=sys.stderr)
         try:
             page = url_opener.open(fetch_url, params)
         except Exception as e:
