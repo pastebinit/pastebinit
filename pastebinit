@@ -24,11 +24,12 @@ from __future__ import print_function
 
 import sys
 if sys.version[0] == "2":
-    from ConfigParser import SafeConfigParser, NoOptionError
+    from ConfigParser import NoOptionError
+    from ConfigParser import SafeConfigParser as ConfigParser
     from urllib import urlencode
     from urllib import FancyURLopener
 else:
-    from configparser import SafeConfigParser, NoOptionError
+    from configparser import ConfigParser, NoOptionError
     from urllib.parse import urlencode
     from urllib.request import FancyURLopener
 
@@ -101,7 +102,7 @@ try:
                     continue
 
                 filename = os.path.join(confdir, fileitem)
-                instance = SafeConfigParser()
+                instance = ConfigParser()
                 try:
                     instance.read(filename)
                 except UnicodeError:
