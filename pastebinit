@@ -138,7 +138,7 @@ try:
             return ""
         return matches[1]
 
-    #Return the parameters depending of the pastebin used
+    # Return the parameters depending of the pastebin used
     def getParameters(website, pastebind, content, user, jabberid, version,
                       format, parentpid, permatag, title, username,
                       password):
@@ -166,7 +166,8 @@ try:
                         params[paramname] = version
                     elif param == 'format':
                         try:
-                            params[paramname] = paste_config.get('defaults', 'format')
+                            params[paramname] = paste_config.get('defaults',
+                                                                 'format')
                         except NoOptionError:
                             params[paramname] = format
                     elif param == 'parentpid':
@@ -190,7 +191,7 @@ try:
                   file=sys.stderr)
             sys.exit(1)
 
-    #XML Handling methods
+    # XML Handling methods
     def getText(nodelist):
         rc = ""
         for node in nodelist:
@@ -246,7 +247,7 @@ try:
     verbose = False
     echo = False
 
-    #Example configuration file string
+    # Example configuration file string
     configexample = """\
 <pastebinit>
 <pastebin>http://paste.debian.net</pastebin>
@@ -256,7 +257,7 @@ try:
 </pastebinit>
 """
 
-    #Open configuration file if it exists
+    # Open configuration file if it exists
     try:
         f = open(configfile)
         configtext = f.read()
@@ -268,7 +269,7 @@ try:
     except:
         gotconfigxml = False
 
-    #Parse configuration file
+    # Parse configuration file
     if gotconfigxml:
         try:
             configxml = xml.dom.minidom.parseString(configtext)
