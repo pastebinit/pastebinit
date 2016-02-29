@@ -444,18 +444,24 @@ try:
 
         try:
             # Check if we have to apply a regexp
+            page_url = ""
             if reLink:
                 if reLink == '(.*)':
-                    print(page.read().decode('utf-8').strip())
+                    page_url = page.read().decode('utf-8').strip()
                 else:
                     # Print the result of the regexp
-                    print(relink_target_url + re.split(reLink,
-                          page.read().decode('utf-8'))[1])
+                    page_url = relink_target_url + re.split(
+                        reLink,
+                        page.read().decode('utf-8'))[1]
             else:
                 # Get the final page and show the url
                 if echo:
                     print("-" * len(page.url))
-                print(page.url)
+                page_url = page.url
+
+            if website.startswith('https://'):
+                page_url = page_url.replace('http://', 'https://')
+            print(page_url)
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
             sys.exit(1)
