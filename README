@@ -59,9 +59,6 @@ A number of reserved keywords can be used, but are optional:
 	format -	contains the format setting:
 			usually used for syntax highlighting.
 
-	parentpid -	contains the parent post ID for 
-			pastebins that use it.
-
 	permatag -	contains permatag as set at the command
 			line.
 

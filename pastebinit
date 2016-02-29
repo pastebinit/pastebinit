@@ -121,27 +121,9 @@ try:
                 pastebind[instance.get('pastebin', 'basename')] = instance
         return pastebind
 
-    # pastey.net obfuscates parent ids for replies.  Rather than taking the
-    # post ID given as the parent ID, we must handle this by going to that
-    # post page and looking up what the invisible parent ID field will be
-    # set to for children.
-    def doParentFixup(website, paramname, parentid):
-        if parentid == "":
-            return ""
-        url_opener = pasteURLopener()
-        page = url_opener.open(website + '/' + parentid, None)
-        matches = re.split('<input.*?name="' + paramname + '".*?value="(.*?)"',
-                           page.read())
-        if len(matches) <= 1 or re.match(parentid, matches[1]) is None:
-            # The obfuscated version didn't begin with the partial version,
-            # or unable to find the obfuscated version for some reason!
-            # Create a paste with no parent (should we throw, instead?)
-            return ""
-        return matches[1]
-
     # Return the parameters depending of the pastebin used
     def getParameters(website, pastebind, content, user, jabberid, version,
-                      format, parentpid, permatag, title, username,
+                      format, permatag, title, username,
                       password):
         "Return the parameters array for the selected pastebin"
         params = {}
@@ -179,9 +161,6 @@ try:
                                                                  'format')
                         except NoOptionError:
                             params[paramname] = format
-                    elif param == 'parentpid':
-                        params[paramname] = doParentFixup(website, paramname,
-                                                          parentpid)
                     elif param == 'permatag':
                         params[paramname] = permatag
                     elif param == 'username':
@@ -235,7 +214,6 @@ try:
               jabberid, file=fd)
         print(_("\t-m <permatag for all versions of a post:default is blank>"),
               file=fd)
-        print(_("\t-r <parent posts ID:defaults to none>"), file=fd)
         print(_("\t-t <title of paste:default is blank>"), file=fd)
         print(_("\t-u <username> -p <password>"), file=fd)
         print(_("\t-v Print the version number"), file=fd)
@@ -252,7 +230,6 @@ try:
     password = ""
     filenames = []
     content = ""
-    parentpid = ""
     verbose = False
     echo = False
 
@@ -303,7 +280,7 @@ try:
     # Get options
     try:
         optlist, arglist = getopt.getopt(sys.argv[1:],
-                                         'Phvli:f:b:a:r:j:t:m:u:p:',
+                                         'Phvli:f:b:a:j:t:m:u:p:',
                                          ('verbose',))
     except KeyboardInterrupt:
         print(_("KeyboardInterrupt caught."), file=sys.stderr)
@@ -331,8 +308,6 @@ try:
             website = opt[1]
         elif opt[0] == "-a":
             user = opt[1]
-        elif opt[0] == "-r":
-            parentpid = opt[1]
         elif opt[0] == "-j":
             jabberid = opt[1]
         elif opt[0] == "-l":
@@ -388,7 +363,7 @@ try:
     for content in contents:
         # Get the parameter array
         website, params = getParameters(website, pastebind, content, user,
-                                        jabberid, version, format, parentpid,
+                                        jabberid, version, format,
                                         permatag, title, username, password)
 
         if not website.endswith("/"):
