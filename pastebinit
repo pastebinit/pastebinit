@@ -69,7 +69,7 @@ try:
     socket.setdefaulttimeout(15)
 
     # Version number to show in the usage
-    version = "1.4.1"
+    version = "1.5"
     configfile = os.path.expanduser("~/.pastebinit.xml")
 
     # Custom urlopener to handle 401's
