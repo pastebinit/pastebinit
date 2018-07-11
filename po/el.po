@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-06 23:31+0000\n"
 "PO-Revision-Date: 2012-02-15 18:39+0000\n"
-"Last-Translator: Simos Xenitellis <Unknown>\n"
+"Last-Translator: Simos Xenitellis  <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-11 05:12+0000\n"
-"X-Generator: Launchpad (build 17720)\n"
+"X-Launchpad-Export-Date: 2018-07-11 04:33+0000\n"
+"X-Generator: Launchpad (build 18719)\n"
 
 #: ../pastebinit:105
 msgid "%s: no section [pastebin]"
@@ -41,6 +41,8 @@ msgstr ""
 #: ../pastebinit:204
 msgid "Reads on stdin for input or takes a list of filenames as parameters"
 msgstr ""
+"Διαβάζει από το stdin για είσοδο ή παίρνει μια λίστα από ονόματα αρχείων ως "
+"παραμέτρους"
 
 #: ../pastebinit:206
 msgid "Optional arguments (not supported by all pastebins):"
@@ -93,7 +95,7 @@ msgstr "\t-u <όνομα χρήστη> -p <συνθηματικό>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr ""
+msgstr "\t-v Τυπώνει τον αριθμό έκδοσης"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
@@ -139,7 +141,7 @@ msgstr "Δε βρέθηκε κάποια έκδοση της βιβλιοθήκ�
 
 #: ../pastebinit:413
 msgid "Failed to contact the server: %s"
-msgstr ""
+msgstr "Αποτυχία επικοινωνίας με το διακομιστή: %s"
 
 #: ../pastebinit:437
 msgid ""
