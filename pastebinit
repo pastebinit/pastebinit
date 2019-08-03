@@ -22,15 +22,9 @@
 from __future__ import print_function
 
 import sys
-if sys.version[0] == "2":
-    from ConfigParser import NoOptionError
-    from ConfigParser import SafeConfigParser as ConfigParser
-    from urllib import urlencode
-    from urllib import request
-else:
-    from configparser import ConfigParser, NoOptionError
-    from urllib.parse import urlencode
-    from urllib import request
+from configparser import ConfigParser, NoOptionError
+from urllib.parse import urlencode
+from urllib import request
 
 # Set the default pastebin
 defaultPB = "pastebin.com"
