@@ -27,11 +27,11 @@ if sys.version[0] == "2":
     from ConfigParser import NoOptionError
     from ConfigParser import SafeConfigParser as ConfigParser
     from urllib import urlencode
-    from urllib import FancyURLopener
+    from urllib import request
 else:
     from configparser import ConfigParser, NoOptionError
     from urllib.parse import urlencode
-    from urllib.request import FancyURLopener
+    from urllib import request
 
 # Set the default pastebin
 defaultPB = "pastebin.com"
@@ -72,12 +72,13 @@ try:
     version = "1.5"
     configfile = os.path.expanduser("~/.pastebinit.xml")
 
-    # Custom urlopener to handle 401's
-    class pasteURLopener(FancyURLopener):
+    class PasteRequest(request.Request):
         version = "Pastebinit v%s" % version
 
-        def http_error_401(self, url, fp, errcode, errmsg, headers, data=None):
-            return None
+        def __init__(self, *args, **opts):
+            super(PasteRequest, self).__init__(*args, **opts)
+            if 'User-agent' not in self.headers:
+                self.add_header('User-agent', self.version)
 
     def preloadPastebins():
         # Check several places for config files:
@@ -410,25 +411,25 @@ try:
         else:
             post_format = 'standard'
 
-        url_opener = pasteURLopener()
+        req = PasteRequest(fetch_url)
 
         if post_format == 'json':
             if json:
-                params = json.dumps(params)
-                url_opener.addheader('Content-type', 'text/json')
+                params = bytes(json.dumps(params), encoding='US-ASCII')
+                req.add_header('Content-type', 'text/json')
             else:
                 print(_("Could not find any json library."), file=sys.stderr)
                 sys.exit(1)
         else:
             # Convert to a format usable with the HTML POST
-            params = urlencode(params)
+            params = bytes(urlencode(params), encoding='US-ASCII')
 
         # Send the informations and be redirected to the final page
         if verbose:
             print("POSTing to: %s\nParams: %s" % (
                 fetch_url, str(params)), file=sys.stderr)
         try:
-            page = url_opener.open(fetch_url, params)
+            page = request.urlopen(req, params)
         except Exception as e:
             print(_("Failed to contact the server: %s") % e, file=sys.stderr)
             sys.exit(1)
