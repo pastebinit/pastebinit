@@ -38,8 +38,8 @@ defaultPB = "pastebin.com"
 
 # Now try to override it with a distributor pastebin
 try:
-    import platform
-    release = platform.linux_distribution()[0].lower()
+    import distro
+    release = distro.linux_distribution(full_distribution_name=False)[0].lower()
     if release == 'debian':
         defaultPB = "paste.debian.net"
     elif release == 'fedora':
