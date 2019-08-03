@@ -63,7 +63,7 @@ try:
     socket.setdefaulttimeout(15)
 
     # Version number to show in the usage
-    version = "1.5"
+    version = "1.5.1"
     configfile = os.path.expanduser("~/.pastebinit.xml")
 
     class PasteRequest(request.Request):
