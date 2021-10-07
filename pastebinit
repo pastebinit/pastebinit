@@ -260,6 +260,7 @@ try:
             configxml = xml.dom.minidom.parseString(configtext)
             for variable, key in (('pastebin', 'website'), ('author', 'user'),
                                   ('format', 'format'),
+                                  ('private', 'private'),
                                   ('jabberid', 'jabberid')):
                 try:
                     value = getFirstNodeText(configxml, variable)
