@@ -343,7 +343,7 @@ try:
             content = sys.stdin.read()
         else:
             try:
-                with open(filename, "rb") as fd:
+                with open(filename, "r") as fd:
                     content = fd.read()
             except KeyboardInterrupt:
                 print(_("KeyboardInterrupt caught."), file=sys.stderr)
