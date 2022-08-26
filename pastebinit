@@ -27,18 +27,16 @@ from urllib.parse import urlencode
 from urllib import request
 
 # Set the default pastebin
-defaultPB = "pastebin.com"
+defaultPB = "dpaste.com"
 
 # Now try to override it with a distributor pastebin
 try:
     import distro
     release = distro.id()
-    if release == 'debian':
+    if release in ('debian', 'raspbian'):
         defaultPB = "paste.debian.net"
-    elif release == 'fedora':
-        defaultPB = "fpaste.org"
-    elif release == 'ubuntu':
-        defaultPB = "paste.ubuntu.com"
+    elif release in ('fedora', 'centos', 'rhel', 'rocky'):
+        defaultPB = "paste.centos.org"
 except ImportError:
     pass
 
