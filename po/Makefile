@@ -9,4 +9,4 @@ all: build-mo
 build-mo: $(patsubst %.po,%.mo,$(wildcard *.po))
 
 update-po:
-	pygettext -a -D ../pastebinit
+	pygettext3 -a -D ../pastebinit
