@@ -60,7 +60,7 @@ try:
     socket.setdefaulttimeout(15)
 
     # Version number to show in the usage
-    version = "1.6"
+    version = "1.6.2"
     configfiles = []
 
     for conffile in list(reversed(os.environ.get(
