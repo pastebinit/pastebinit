@@ -63,11 +63,21 @@ try:
     version = "1.6"
     configfiles = []
 
-    for conffile in list(reversed(os.environ.get(
-            'XDG_CONFIG_DIRS').split(':'))) + ['/etc', '/usr/local/etc',
-               os.environ.get('XDG_CONFIG_HOME',
-                   os.path.expanduser('~/.config')),
-               os.path.expanduser('~/.pastebinit.xml')]:
+    # Semi-hackish approach to fix a NoneType split problem here.
+    # Refer to Debian Bug #1023962
+    try:
+        xdg_config_dirs = list(reversed(os.environ.get(
+            'XDG_CONFIG_DIRS').split(':')))
+    except AttributeError as err:
+        if "NoneType" in str(err):
+            xdg_config_dirs = []
+        else:
+            raise
+
+    for conffile in xdg_config_dirs + ['/etc', '/usr/local/etc',
+                                       os.environ.get('XDG_CONFIG_HOME',
+                                                      os.path.expanduser('~/.config')),
+                                       os.path.expanduser('~/.pastebinit.xml')]:
 
         conffile = conffile.rstrip('/')
         if not conffile.endswith('pastebinit.xml'):
