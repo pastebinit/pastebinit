@@ -352,18 +352,19 @@ try:
         # If - is specified as a filename read from stdin
         # otherwise load the specified files.
         content = ""
-        if filename == "-":
-            content = sys.stdin.read().rstrip()
-        else:
-            try:
+        try:
+            if filename == "-":
+                filename = "STDIN"
+                content = sys.stdin.read().rstrip()
+            else:
                 with open(filename, "r") as fd:
                     content = fd.read().rstrip()
-            except KeyboardInterrupt:
-                print(_("KeyboardInterrupt caught."), file=sys.stderr)
-                sys.exit(1)
-            except:
-                print(_("Unable to read from: %s") % filename, file=sys.stderr)
-                sys.exit(1)
+        except KeyboardInterrupt:
+            print(_("KeyboardInterrupt caught."), file=sys.stderr)
+            sys.exit(1)
+        except:
+            print(_("Error reading from: '%s'") % filename, file=sys.stderr)
+            sys.exit(1)
 
         if not content:
             print(_("You are trying to send an empty document, exiting."),
