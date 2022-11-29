@@ -187,7 +187,7 @@ def getArgs():
         description=_("Reads on stdin for input or takes a list of files"),
         add_help=False
     )
-    parser.add_argument('files', nargs="?", action="append", metavar="FILE", type=list,
+    parser.add_argument('files', nargs="?", action="append", metavar="FILE", type=str,
                         default=[], help=argparse.SUPPRESS)
 
     general = parser.add_argument_group(_('General arguments'))
