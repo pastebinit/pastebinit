@@ -188,7 +188,7 @@ def getArgs():
         add_help=False
     )
     parser.add_argument('files', nargs="?", action="append", metavar="FILE", type=str,
-                        default=['-'], help=argparse.SUPPRESS)
+                        default='-', help=argparse.SUPPRESS)
 
     general = parser.add_argument_group(_('General arguments'))
     general.add_argument('-b', nargs=1, dest='website', type=str,
@@ -375,9 +375,6 @@ if __name__ == "__main__":
             website = website.split('://')[1]
         website = website.strip('/')
         website, config = getConfig(website)
-
-        if not filenames:
-            filenames.append("-")
 
         contents = []
         for filename in filenames:
