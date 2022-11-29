@@ -188,7 +188,7 @@ def getArgs():
         add_help=False
     )
     parser.add_argument('files', nargs="?", action="append", metavar="FILE", type=str,
-                        default=[], help=argparse.SUPPRESS)
+                        help=argparse.SUPPRESS)
 
     general = parser.add_argument_group(_('General arguments'))
     general.add_argument('-b', nargs=1, dest='website', type=str,
@@ -333,6 +333,10 @@ if __name__ == "__main__":
         # Get options
         try:
             args = getArgs()
+            try:
+                args.files.remove(None)
+            except ValueError:
+                pass
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
             sys.exit(1)
@@ -377,7 +381,7 @@ if __name__ == "__main__":
         website, config = getConfig(website)
 
         if not filenames:
-            filenames.append('-')
+            filenames = ['-']
 
         contents = []
         for filename in filenames:
