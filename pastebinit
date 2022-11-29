@@ -421,7 +421,8 @@ if __name__ == "__main__":
             user_length = int(config['user_length'])
             user = pastebind[config['basename']].get('defaults', 'user',
                     vars=spec_opts, fallback=inline_opts.get('user'))
-            spec_opts['user'] = "%s~" % user[:user_length-1]
+            if len(user) > user_length:
+                spec_opts['user'] = "%s~" % user[:user_length-1]
 
         for content in contents:
             # Get the parameters
