@@ -22,8 +22,6 @@
 from __future__ import print_function
 
 import argparse
-
-import getopt
 import gettext
 import os
 import re
@@ -179,59 +177,64 @@ def getFirstNodeText(nodes, title):
 
 
 def getArgs():
-    # Use argparse instead to parse things.  getopt is deprecated.
     # Initialize argparser
     parser = argparse.ArgumentParser(
         prog='pastebinit',
-        usage=_("pastebinit [OPTION...] [FILE...]"),
-        description=_("Reads on stdin for input or takes a list of files"),
+        usage=_("%(prog)s [OPTION...] [FILE...]"),
+        description=_("Reads on stdin for input or takes a list of files as parameters"),
         add_help=False
     )
-    parser.add_argument('files', nargs="?", action="append", metavar="FILE", type=str,
-                        help=argparse.SUPPRESS)
+    parser.add_argument('files', nargs='*', action='extend', metavar='FILE',
+                        type=str, help=argparse.SUPPRESS)
 
-    general = parser.add_argument_group(_('General arguments'))
-    general.add_argument('-b', nargs=1, dest='website', type=str,
-                         default=defaultPB, metavar=_("<pastebin>"),
-                         help=_("(default is '%(default)s')"))
-    general.add_argument('-i', nargs="+", action="extend", dest="files",
-                         metavar="FILE", help=_("One or more files to read and paste"),
-                         type=str)
-    general.add_argument('-l', action='store_true', dest="list_pastebins",
-                         help=_("List all supported pastebins then exit"))
-    general.add_argument('-E', action='store_true', dest="echo",
+    general = parser.add_argument_group(_("General arguments"))
+    general.add_argument('-b', nargs=1, dest='website',
+                         type=str, metavar=_("<pastebin>"),
+                         help=_("(default is '%s')") % website)
+    general.add_argument('-i', nargs='+', action='extend', dest='files',
+                         type=str, metavar='FILE',
+                         help=_("One or more files to read and paste"))
+    general.add_argument('-l', action='store_true', dest='list_pastebins',
+                         help=_("List all supported pastebins"))
+    general.add_argument('-E', action='store_true', dest='echo',
                          help=_("Print the content to stdout too"))
     general.add_argument('-h', action='help',
-                         help=_("Print this help screen then exit"))
-    general.add_argument('-v', action="version",
-                         help=_("Print the version number and exit"),
-                         version=_("%(prog)s v" + version))
-    general.add_argument('-V', action='store_true', dest="verbose",
+                         help=_("Print this help screen"))
+    general.add_argument('-v', action='version',
+                         help=_("Print the version number"),
+                         version="%(prog)s v" + version)
+    general.add_argument('-V', action='store_true', dest='verbose',
                          help=_("Print verbose output to stderr"))
 
-    optional = parser.add_argument_group(_('Optional Arguments (not supported by all pastebins)'))
-    optional.add_argument('-a', nargs=1, dest="user", default="root",
-                          type=str, metavar="<author>",
-                          help=_("(default is '%(default)s')"))
-    optional.add_argument('-t', nargs=1, dest="title", default=None,
+    optional = parser.add_argument_group(_("Optional arguments (not supported by all pastebins)"))
+    optional.add_argument('-a', nargs=1, dest='user',
+                          type=str, metavar=_("<author>"),
+                          help=_("(default is '%s')") % spec_opts.get(
+                              'user', inline_opts['user']))
+    optional.add_argument('-t', nargs=1, dest='title',
                           type=str, metavar=_("<title of paste>"),
-                          help=_("(default is none)"))
-    optional.add_argument('-f', nargs=1, dest='format', default="text",
+                          help=_("(default is '%s')") % inline_opts['title'])
+    optional.add_argument('-f', nargs=1, dest='format',
                           type=str, metavar=_("<format of paste>"),
-                          help=_("(default is '%(default)s')"))
-    optional.add_argument('-j', nargs=1, dest='jabberid', default="",
+                          help=_("(default is '%s')") % spec_opts.get(
+                              'format', inline_opts['format']))
+    optional.add_argument('-j', nargs=1, dest='jabberid',
                           type=str, metavar=_("<jabberid>"),
-                          help=_("(default is '%(default)s')"))
-    optional.add_argument('-m', nargs=1, dest='permatag', default=None,
+                          help=_("(default is '%s')") % spec_opts.get(
+                              'jabberid', inline_opts['jabberid']))
+    optional.add_argument('-m', nargs=1, dest='permatag',
                           type=str, metavar=_("<permatag>"),
-                          help=_("(default is none)"))
-    optional.add_argument('-P', nargs=1, dest='private', default='1',
+                          help=_("(default is '%s')") % inline_opts['permatag'])
+    optional.add_argument('-P', nargs=1, dest='private',
                           type=str, metavar=_("<private level>"),
-                          help=_("(default even when unspecified is '%(default)s')"))
-    optional.add_argument('-u', nargs=1, dest='username', default=None,
-                          type=str, metavar=_("<username>"))
-    optional.add_argument('-p', nargs=1, dest='password', default=None,
-                          type=str, metavar=_("<password>"))
+                          help=_("(default is '%s')") % spec_opts.get(
+                              'private', inline_opts['private']))
+    optional.add_argument('-u', nargs=1, dest='username',
+                          type=str, metavar=_("<username>"),
+                          help=_("(default is '%s')") % inline_opts['username'])
+    optional.add_argument('-p', nargs=1, dest='password',
+                          type=str, metavar=_("<password>"),
+                          help=_("(default is '%s')") % inline_opts['password'])
 
     return parser.parse_args()
 
@@ -269,7 +272,7 @@ if __name__ == "__main__":
             'title'     : "",
             'permatag'  : "",
             'format'    : "text",
-            'private'   : 1,
+            'private'   : "1",
             'username'  : "",
             'password'  : ""
         }
@@ -333,10 +336,6 @@ if __name__ == "__main__":
         # Get options
         try:
             args = getArgs()
-            try:
-                args.files.remove(None)
-            except ValueError:
-                pass
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
             sys.exit(1)
@@ -350,21 +349,23 @@ if __name__ == "__main__":
             print(_("Supported pastebins:"))
             for pastebin in sorted(list(pastebind.keys())):
                 print("- %s" % pastebin)
-            exit(0)
-
-        # Default args are here, so no need to iterate optslist
-        website = args.website
-        filenames = args.files
-        spec_opts['user'] = args.user
-        spec_opts['format'] = args.format
+            sys.exit(0)
 
         # These two are bools, with new defaults.
         echo = args.echo
         verbose = args.verbose
 
         # We do have some optional args to check against though.
+        if args.files:
+            filenames = args.files
+        if args.website:
+            website = args.website
+        if args.user:
+            spec_opts['user'] = args.user
         if args.title:
             spec_opts['title'] = args.title
+        if args.format:
+            spec_opts['format'] = args.format
         if args.jabberid:
             spec_opts['jabberid'] = args.jabberid
         if args.permatag:
@@ -381,7 +382,7 @@ if __name__ == "__main__":
         website, config = getConfig(website)
 
         if not filenames:
-            filenames = ['-']
+            filenames = ["-"]
 
         contents = []
         for filename in filenames:
