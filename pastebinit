@@ -188,7 +188,7 @@ def getArgs():
         add_help=False
     )
     parser.add_argument('files', nargs="?", action="append", metavar="FILE", type=str,
-                        default='-', help=argparse.SUPPRESS)
+                        default=['-'], help=argparse.SUPPRESS)
 
     general = parser.add_argument_group(_('General arguments'))
     general.add_argument('-b', nargs=1, dest='website', type=str,
