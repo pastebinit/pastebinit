@@ -95,7 +95,7 @@ msgstr "\t-u <имя пользователя> -p <пароль>"
 
 #: ../pastebinit:221
 msgid "\t-v Print the version number"
-msgstr "\t-v Вывести новер версии"
+msgstr "\t-v Вывести номер версии"
 
 #: ../pastebinit:253 ../pastebinit:271 ../pastebinit:285 ../pastebinit:346
 #: ../pastebinit:434 ../pastebinit:443
