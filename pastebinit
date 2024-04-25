@@ -188,7 +188,7 @@ def getArgs():
                         type=str, help=argparse.SUPPRESS)
 
     general = parser.add_argument_group(_("General arguments"))
-    general.add_argument('-b', nargs=1, dest='website',
+    general.add_argument('-b', dest='website',
                          type=str, metavar=_("<pastebin>"),
                          help=_("(default is '%s')") % website)
     general.add_argument('-i', nargs='+', action='extend', dest='files',
@@ -207,32 +207,32 @@ def getArgs():
                          help=_("Print verbose output to stderr"))
 
     optional = parser.add_argument_group(_("Optional arguments (not supported by all pastebins)"))
-    optional.add_argument('-a', nargs=1, dest='user',
+    optional.add_argument('-a', dest='user',
                           type=str, metavar=_("<author>"),
                           help=_("(default is '%s')") % spec_opts.get(
                               'user', inline_opts['user']))
-    optional.add_argument('-t', nargs=1, dest='title',
+    optional.add_argument('-t', dest='title',
                           type=str, metavar=_("<title of paste>"),
                           help=_("(default is '%s')") % inline_opts['title'])
-    optional.add_argument('-f', nargs=1, dest='format',
+    optional.add_argument('-f', dest='format',
                           type=str, metavar=_("<format of paste>"),
                           help=_("(default is '%s')") % spec_opts.get(
                               'format', inline_opts['format']))
-    optional.add_argument('-j', nargs=1, dest='jabberid',
+    optional.add_argument('-j', dest='jabberid',
                           type=str, metavar=_("<jabberid>"),
                           help=_("(default is '%s')") % spec_opts.get(
                               'jabberid', inline_opts['jabberid']))
-    optional.add_argument('-m', nargs=1, dest='permatag',
+    optional.add_argument('-m', dest='permatag',
                           type=str, metavar=_("<permatag>"),
                           help=_("(default is '%s')") % inline_opts['permatag'])
-    optional.add_argument('-P', nargs=1, dest='private',
+    optional.add_argument('-P', dest='private',
                           type=str, metavar=_("<private level>"),
                           help=_("(default is '%s')") % spec_opts.get(
                               'private', inline_opts['private']))
-    optional.add_argument('-u', nargs=1, dest='username',
+    optional.add_argument('-u', dest='username',
                           type=str, metavar=_("<username>"),
                           help=_("(default is '%s')") % inline_opts['username'])
-    optional.add_argument('-p', nargs=1, dest='password',
+    optional.add_argument('-p', dest='password',
                           type=str, metavar=_("<password>"),
                           help=_("(default is '%s')") % inline_opts['password'])
 
