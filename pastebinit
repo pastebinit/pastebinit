@@ -185,6 +185,7 @@ def Usage(fd=sys.stdout):
     print(_("\nGeneral arguments:\n"), file=fd)
     print(_("\t-b <pastebin> (default is '%s')") % website, file=fd)
     print(_("\t-i <input file>"), file=fd)
+    print(_("\t-o Specific options in the format '<key>=<value>'"), file=fd)
     print(_("\t-l List all supported pastebins"), file=fd)
     print(_("\t-E Print the content to stdout too"), file=fd)
     print(_("\t-h Print this help screen"), file=fd)
@@ -244,6 +245,7 @@ if __name__ == "__main__":
             'password'  : ""
         }
         spec_opts = {}
+        custom_opts = {}
         filenames = []
         verbose = False
         echo = False
@@ -303,7 +305,7 @@ if __name__ == "__main__":
         # Get options
         try:
             optlist, arglist = getopt.getopt(sys.argv[1:],
-                                             'EVP:hlva:b:f:i:t:j:m:u:p:')
+                    'EVP:hlva:b:f:i:t:j:m:u:p:o:')
         except KeyboardInterrupt:
             print(_("KeyboardInterrupt caught."), file=sys.stderr)
             sys.exit(1)
@@ -350,6 +352,9 @@ if __name__ == "__main__":
                 spec_opts['password'] = opt[1]
             elif opt[0] == "-E":
                 echo = True
+            elif opt[0] == "-o":
+                [key, value] = opt[1].split("=", 1)
+                custom_opts[key] = value
             elif opt[0] == "-V":
                 verbose = True
 
@@ -427,6 +432,7 @@ if __name__ == "__main__":
         for content in contents:
             # Get the parameters
             params = getParameters(config['basename'], content)
+            params.update(custom_opts)
 
             if "sizelimit" in config:
                 if len(content) > int(config['sizelimit']):
