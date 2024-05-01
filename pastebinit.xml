@@ -4,7 +4,7 @@
   <!ENTITY dhfirstname "<firstname>Stephane</firstname>">
   <!ENTITY dhsurname   "<surname>Graber</surname>">
   <!-- Please adjust the date whenever revising the manpage. -->
-  <!ENTITY dhdate      "<date>August 26, 2022</date>">
+  <!ENTITY dhdate      "<date>May 1, 2024</date>">
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
   <!ENTITY dhemail     "<email>stgraber@ubuntu.com</email>">
   <!ENTITY dhusername  "Stephane Graber">
@@ -99,13 +99,10 @@
           <term><option>-f <arg>format of paste</arg></option> (default: text)</term>
         </varlistentry>
         <varlistentry>
-          <term><option>-j <arg>jabberid</arg></option> (default: none)</term>
-        </varlistentry>
-        <varlistentry>
-          <term><option>-m <arg>permatag</arg></option> (default: none)</term>
-        </varlistentry>
-        <varlistentry>
           <term><option>-P <arg>private level</arg></option> (default: 1)</term>
+        </varlistentry>
+        <varlistentry>
+          <term><option>-e <arg>expiry of paste</arg></option> (default: none)</term>
         </varlistentry>
         <varlistentry>
           <term><option>-u <arg>username</arg></option> (default: none)</term>
@@ -127,9 +124,9 @@
 &lt;pastebinit&gt;
     &lt;pastebin&gt;paste.ubuntu.com&lt;/pastebin&gt;
     &lt;author&gt;Stephane Graber&lt;/author&gt;
-    &lt;jabberid&gt;stgraber@stgraber.org&lt;/jabberid&gt;
     &lt;format&gt;text&lt;/format&gt;
     &lt;private&gt;1&lt;/private&gt;
+    &lt;expiry&gt;&lt;/expiry&gt;
 &lt;/pastebinit&gt;
     </programlisting>
     <para>Similarly, pastebin configuration files can be put under a

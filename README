@@ -65,11 +65,9 @@ A number of reserved keywords can be used, but are optional:
 	format		contains the format of the paste, usually
 			used for syntax highlighting.
 
-	jabberid	contains the jabberid of the poster.
-
-	permatag	contains permatag as set at the command line.
-
 	private		makes the paste private if supported.
+
+	expiry		sets the paste expiration if supported.
 
 	username	contains the pastebin username if required.
 
@@ -84,12 +82,12 @@ name to a variable, and set the correct value for that variable under the
 "[defaults]" section later, as such:
 
 [format]
-expire = expiry
+expiry = expiry
 
 [defaults]
-expire = 365
+expiry = 365
 
-Where "expire" can then be reused as the keyword to retrieve a static value in
+Where "expiry" can then be reused as the keyword to retrieve a static value in
 the "[defaults]" section. See below for an example.
 
 
@@ -104,9 +102,9 @@ the value to give it.
 To reuse the example above, statically set a post to expire after 365 days:
 
 [defaults]
-expire = 365
+expiry = 365
 
-Here, the value "365" will be assigned to the "expire" keyword. In the
-"[format]" section, the value in the "expire" keyword is applied to the
+Here, the value "365" will be assigned to the "expiry" keyword. In the
+"[format]" section, the value in the "expiry" keyword is applied to the
 field called "expiry".
 

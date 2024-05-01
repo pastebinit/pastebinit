@@ -218,17 +218,13 @@ def getArgs():
                           type=str, metavar=_("<format of paste>"),
                           help=_("(default is '%s')") % spec_opts.get(
                               'format', inline_opts['format']))
-    optional.add_argument('-j', dest='jabberid',
-                          type=str, metavar=_("<jabberid>"),
-                          help=_("(default is '%s')") % spec_opts.get(
-                              'jabberid', inline_opts['jabberid']))
-    optional.add_argument('-m', dest='permatag',
-                          type=str, metavar=_("<permatag>"),
-                          help=_("(default is '%s')") % inline_opts['permatag'])
-    optional.add_argument('-P', dest='private',
+    optional.add_argument('-P', dest='private', default=None,
                           type=str, metavar=_("<private level>"),
                           help=_("(default is '%s')") % spec_opts.get(
                               'private', inline_opts['private']))
+    optional.add_argument('-e', dest='expiry', default=None,
+                          type=str, metavar=_("<expiry of paste>"),
+                          help=_("(default is '%s')") % inline_opts['expiry'])
     optional.add_argument('-u', dest='username',
                           type=str, metavar=_("<username>"),
                           help=_("(default is '%s')") % inline_opts['username'])
@@ -268,11 +264,10 @@ if __name__ == "__main__":
         website = defaultPB
         inline_opts = {
             'user'      : os.environ.get('USER', os.environ.get('LOGNAME')),
-            'jabberid'  : "",
             'title'     : "",
-            'permatag'  : "",
             'format'    : "text",
             'private'   : "1",
+            'expiry'    : "",
             'username'  : "",
             'password'  : ""
         }
@@ -286,9 +281,9 @@ if __name__ == "__main__":
     <pastebinit>
         <pastebin>paste.debian.net</pastebin>
         <author>A pastebinit user</author>
-        <jabberid>nobody@nowhere.org</jabberid>
         <format>text</format>
         <private>1</private>
+        <expiry></expiry>
     </pastebinit>
     """
 
@@ -314,7 +309,7 @@ if __name__ == "__main__":
                                           ('author', 'user'),
                                           ('format', 'format'),
                                           ('private', 'private'),
-                                          ('jabberid', 'jabberid')):
+                                          ('expiry', 'expiry')):
                         try:
                             value = getFirstNodeText(configxml, variable)
                             if variable == 'pastebin':
@@ -366,10 +361,10 @@ if __name__ == "__main__":
             spec_opts['title'] = args.title
         if args.format:
             spec_opts['format'] = args.format
-        if args.jabberid:
-            spec_opts['jabberid'] = args.jabberid
-        if args.permatag:
-            spec_opts['permatag'] = args.permatag
+        if args.private is not None:
+            spec_opts['private'] = args.private
+        if args.expiry is not None:
+            spec_opts['expiry'] = args.expiry
         if args.username:
             spec_opts['username'] = args.username
         if args.password:

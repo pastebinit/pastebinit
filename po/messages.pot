@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-08-27 06:07+0200\n"
+"POT-Creation-Date: 2024-05-01 23:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,140 +15,133 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: ../pastebinit:126
+#: ../pastebinit:109
 msgid "%s: no section [pastebin]"
 msgstr ""
 
-#: ../pastebinit:131
+#: ../pastebinit:114
 msgid "%s: no 'basename' in [pastebin]"
 msgstr ""
 
-#: ../pastebinit:154
+#: ../pastebinit:138
 msgid "Unknown website, please post a bugreport to request this pastebin to be added (%s)"
 msgstr ""
 
+#: ../pastebinit:183
+msgid "%(prog)s [OPTION...] [FILE...]"
+msgstr ""
+
+#: ../pastebinit:184
+msgid "Reads on stdin for input or takes a list of files as parameters"
+msgstr ""
+
+#: ../pastebinit:190
+msgid "General arguments"
+msgstr ""
+
 #: ../pastebinit:192
-msgid ""
-"\n"
-"Reads on stdin for input or takes a list of files as parameters"
+msgid "<pastebin>"
 msgstr ""
 
-#: ../pastebinit:194
-msgid ""
-"\n"
-"Usage:\tpastebinit [OPTION...] [FILE...]"
-msgstr ""
-
-#: ../pastebinit:195
-msgid ""
-"\n"
-"General arguments:\n"
+#: ../pastebinit:193 ../pastebinit:212 ../pastebinit:216 ../pastebinit:219
+#: ../pastebinit:223 ../pastebinit:227 ../pastebinit:230 ../pastebinit:233
+msgid "(default is '%s')"
 msgstr ""
 
 #: ../pastebinit:196
-msgid "\t-b <pastebin> (default is '%s')"
-msgstr ""
-
-#: ../pastebinit:197
-msgid "\t-i <input file>"
+msgid "One or more files to read and paste"
 msgstr ""
 
 #: ../pastebinit:198
-msgid "\t-l List all supported pastebins"
-msgstr ""
-
-#: ../pastebinit:199
-msgid "\t-E Print the content to stdout too"
+msgid "List all supported pastebins"
 msgstr ""
 
 #: ../pastebinit:200
-msgid "\t-h Print this help screen"
-msgstr ""
-
-#: ../pastebinit:201
-msgid "\t-v Print the version number"
+msgid "Print the content to stdout too"
 msgstr ""
 
 #: ../pastebinit:202
-msgid "\t-V Print verbose output to stderr"
+msgid "Print this help screen"
 msgstr ""
 
-#: ../pastebinit:203
-msgid ""
-"\n"
-"Optional arguments (not supported by all pastebins):\n"
-msgstr ""
-
-#: ../pastebinit:205
-msgid "\t-a <author> (default is '%s')"
+#: ../pastebinit:204
+msgid "Print the version number"
 msgstr ""
 
 #: ../pastebinit:207
-msgid "\t-t <title of paste> (default is none)"
+msgid "Print verbose output to stderr"
 msgstr ""
 
-#: ../pastebinit:208
-msgid "\t-f <format of paste> (default is '%s')"
+#: ../pastebinit:209
+msgid "Optional arguments (not supported by all pastebins)"
 msgstr ""
 
-#: ../pastebinit:210
-msgid "\t-j <jabberid> (default is '%s')"
+#: ../pastebinit:211
+msgid "<author>"
 msgstr ""
 
-#: ../pastebinit:212
-msgid "\t-m <permatag> (default is none)"
+#: ../pastebinit:215
+msgid "<title of paste>"
 msgstr ""
 
-#: ../pastebinit:214
-msgid "\t-P <private level> (default is '%s')"
+#: ../pastebinit:218
+msgid "<format of paste>"
 msgstr ""
 
-#: ../pastebinit:216
-msgid "\t-u <username> -p <password>"
+#: ../pastebinit:222
+msgid "<private level>"
 msgstr ""
 
-#: ../pastebinit:254 ../pastebinit:277 ../pastebinit:291 ../pastebinit:362
-#: ../pastebinit:464 ../pastebinit:473
+#: ../pastebinit:226
+msgid "<expiry of paste>"
+msgstr ""
+
+#: ../pastebinit:229
+msgid "<username>"
+msgstr ""
+
+#: ../pastebinit:232
+msgid "<password>"
+msgstr ""
+
+#: ../pastebinit:298 ../pastebinit:322 ../pastebinit:335 ../pastebinit:395
+#: ../pastebinit:498 ../pastebinit:507
 msgid "KeyboardInterrupt caught."
 msgstr ""
 
-#: ../pastebinit:280
+#: ../pastebinit:325
 msgid "Error parsing configuration file!"
 msgstr ""
 
-#: ../pastebinit:281
+#: ../pastebinit:326
 msgid "Please ensure that your configuration file looks similar to the following:"
 msgstr ""
 
-#: ../pastebinit:294
-msgid "Invalid arguments: %s!"
-msgstr ""
-
-#: ../pastebinit:310
+#: ../pastebinit:344
 msgid "Supported pastebins:"
 msgstr ""
 
-#: ../pastebinit:365
-msgid "Unable to read from: %s"
+#: ../pastebinit:398
+msgid "Error reading from: '%s'"
 msgstr ""
 
-#: ../pastebinit:369
+#: ../pastebinit:402
 msgid "You are trying to send an empty document, exiting."
 msgstr ""
 
-#: ../pastebinit:414
+#: ../pastebinit:448
 msgid "The content you are trying to send exceeds the pastebin's size limit."
 msgstr ""
 
-#: ../pastebinit:425
+#: ../pastebinit:459
 msgid "Could not find any JSON library."
 msgstr ""
 
-#: ../pastebinit:438
+#: ../pastebinit:472
 msgid "Failed to contact the server: %s"
 msgstr ""
 
-#: ../pastebinit:467
+#: ../pastebinit:501
 msgid "Unable to read or parse the result page, it could be a server timeout or a change server side, try with another pastebin."
 msgstr ""
 
