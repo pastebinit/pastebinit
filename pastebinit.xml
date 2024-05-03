@@ -63,7 +63,7 @@
       <variablelist>
         <varlistentry>
           <term><option>-b <arg>pastebin</arg></option>
-            (default is distro-specific with a fallback to dpaste.com)</term>
+            (default is distro-specific with a fallback to bpa.st)</term>
         </varlistentry>
         <varlistentry>
           <term><option>-i <arg>input file</arg></option></term>

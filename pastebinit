@@ -42,7 +42,7 @@ except ImportError:
 version = "1.6.2"
 
 # Set the default pastebin
-defaultPB = "dpaste.com"
+defaultPB = "bpa.st"
 
 # Now try to override it with a distributor pastebin
 try:
