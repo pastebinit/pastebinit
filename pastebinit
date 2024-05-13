@@ -39,7 +39,7 @@ except ImportError:
     json = None
 
 # Specify program version
-version = "1.6.2"
+version = "2.0.0"
 
 # Set the default pastebin
 defaultPB = "bpa.st"
