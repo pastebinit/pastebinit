@@ -52,6 +52,8 @@ try:
         defaultPB = "paste.debian.net"
     elif release in ('fedora', 'centos', 'rhel', 'rocky'):
         defaultPB = "paste.centos.org"
+    elif release in ('ubuntu',):
+        defaultPB = "paste.ubuntu.com"
 except ImportError:
     distro = None
     pass
