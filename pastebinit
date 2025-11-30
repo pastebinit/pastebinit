@@ -39,7 +39,7 @@ except ImportError:
     json = None
 
 # Specify program version
-version = "1.7.1"
+version = "1.8.0"
 
 # Set the default pastebin
 defaultPB = "bpa.st"
@@ -52,6 +52,8 @@ try:
         defaultPB = "paste.debian.net"
     elif release in ('fedora', 'centos', 'rhel', 'rocky'):
         defaultPB = "paste.centos.org"
+    elif 'suse' in release or release == 'sles':
+        defaultPB = "paste.opensuse.org"
 except ImportError:
     distro = None
     pass
