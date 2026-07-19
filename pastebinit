@@ -31,6 +31,7 @@ import xml.dom.minidom
 import sys
 from configparser import ConfigParser, NoOptionError
 from urllib.parse import urlencode
+from urllib.error import HTTPError
 from urllib import request
 
 try:
@@ -471,6 +472,12 @@ if __name__ == "__main__":
                       post_url, str(params)), file=sys.stderr)
             try:
                 page = request.urlopen(req, params)
+            except HTTPError as e:
+                print(_("HTTP Error contacting the server: %s") % e, file=sys.stderr)
+                if verbose:
+                    print(_("HTTP Error response body:"))
+                    print(e.fp.read())
+                sys.exit(1)
             except Exception as e:
                 print(_("Failed to contact the server: %s") % e, file=sys.stderr)
                 sys.exit(1)
