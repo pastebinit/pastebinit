@@ -1,0 +1,163 @@
+# Georgian translation for pastebin.
+# Copyright (C) 2026 pastebin authors.
+# This file is distributed under the same license as the pastebin package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pastebin\n"
+"POT-Creation-Date: 2024-05-01 23:30+0200\n"
+"PO-Revision-Date: 2026-02-04 16:24+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 3.8\n"
+
+#: ../pastebinit:109
+msgid "%s: no section [pastebin]"
+msgstr "%s: სექციის გარეშე [pastebin]"
+
+#: ../pastebinit:114
+msgid "%s: no 'basename' in [pastebin]"
+msgstr "%s: 'basename'-ის გარეშე [pastebin]-ში"
+
+#: ../pastebinit:138
+msgid ""
+"Unknown website, please post a bugreport to request this pastebin to be "
+"added (%s)"
+msgstr ""
+"უცნობი ვებსაიტი. მოგვწერეთ ამ ანგარიში, რომ მოითხოვოთ ამ pastebin-ის "
+"დამატება (%s)"
+
+#: ../pastebinit:183
+msgid "%(prog)s [OPTION...] [FILE...]"
+msgstr "%(prog)s [პარამეტრი...] [ფაილი...]"
+
+#: ../pastebinit:184
+msgid "Reads on stdin for input or takes a list of files as parameters"
+msgstr ""
+"წაიკითხავს stdin-ს შეყვანისთვის ან აიღებს ფაილის სახელების სიას "
+"პარამეტრების სახით"
+
+#: ../pastebinit:190
+msgid "General arguments"
+msgstr "ზოგადი არგუმენტები"
+
+#: ../pastebinit:192
+msgid "<pastebin>"
+msgstr "<pastebin>"
+
+#: ../pastebinit:193 ../pastebinit:212 ../pastebinit:216 ../pastebinit:219
+#: ../pastebinit:223 ../pastebinit:227 ../pastebinit:230 ../pastebinit:233
+msgid "(default is '%s')"
+msgstr "(ნაგულისხმევია '%s')"
+
+#: ../pastebinit:196
+msgid "One or more files to read and paste"
+msgstr "ერთი ან მეტი ფაილი წასაკითხად და ჩასასმელად"
+
+#: ../pastebinit:198
+msgid "List all supported pastebins"
+msgstr "ყველა მხარდაჭერილი pastebin-ების ჩამონათვალი"
+
+#: ../pastebinit:200
+msgid "Print the content to stdout too"
+msgstr "ასევე გამოტანილი იქნება stdout-ის შემცველობა"
+
+#: ../pastebinit:202
+msgid "Print this help screen"
+msgstr "დახმარების ამ ეკრანის ჩვენება"
+
+#: ../pastebinit:204
+msgid "Print the version number"
+msgstr "ვერსიის ნომრის გამოტანა"
+
+#: ../pastebinit:207
+msgid "Print verbose output to stderr"
+msgstr "დამატებითი შეტყობინებების გამოტანა stderr-ზე"
+
+#: ../pastebinit:209
+msgid "Optional arguments (not supported by all pastebins)"
+msgstr ""
+"არასავალდებულო არგუმენტები (ყველა pastebin-ის მიერ მხარდაჭერილი არაა):"
+
+#: ../pastebinit:211
+msgid "<author>"
+msgstr "<ავტორი>"
+
+#: ../pastebinit:215
+msgid "<title of paste>"
+msgstr "<ჩასმის სათაური>"
+
+#: ../pastebinit:218
+msgid "<format of paste>"
+msgstr "<ჩასმის ფორმატი>"
+
+#: ../pastebinit:222
+msgid "<private level>"
+msgstr "<პირადულობის დონე>"
+
+#: ../pastebinit:226
+msgid "<expiry of paste>"
+msgstr "<ჩასმის ვადა>"
+
+#: ../pastebinit:229
+msgid "<username>"
+msgstr "<მომხმარებლისსახელი>"
+
+#: ../pastebinit:232
+msgid "<password>"
+msgstr "პაროლი>"
+
+#: ../pastebinit:298 ../pastebinit:322 ../pastebinit:335 ../pastebinit:395
+#: ../pastebinit:498 ../pastebinit:507
+msgid "KeyboardInterrupt caught."
+msgstr "მიღებულია კლავიატურით წყვეტის სიგნალი."
+
+#: ../pastebinit:325
+msgid "Error parsing configuration file!"
+msgstr "კონფიგურაციის ფაილის დამუშავების შეცდომა!"
+
+#: ../pastebinit:326
+msgid ""
+"Please ensure that your configuration file looks similar to the following:"
+msgstr ""
+"დარწმუნდით, რომ თქვენი კონფიგურაციის ფაილი ამის მსგავსად გამოიყურება:"
+
+#: ../pastebinit:344
+msgid "Supported pastebins:"
+msgstr "მხარდაჭერილი pastebin-ები:"
+
+#: ../pastebinit:398
+msgid "Error reading from: '%s'"
+msgstr "წაკითხვის შეცდომა ფაილიდან: '%s'"
+
+#: ../pastebinit:402
+msgid "You are trying to send an empty document, exiting."
+msgstr "ცდილობთ, გააგზავნოთ ცარიელი დოკუმენტი. შეწყვეტა."
+
+#: ../pastebinit:448
+msgid "The content you are trying to send exceeds the pastebin's size limit."
+msgstr ""
+"შემცველობა, რომლის გაგზავნასაც ცდილობთ, pastebin-ის ზომის ზღვარს სცდება."
+
+#: ../pastebinit:459
+msgid "Could not find any JSON library."
+msgstr "json ბიბლიოთეკა აღმოჩენილი არაა."
+
+#: ../pastebinit:472
+msgid "Failed to contact the server: %s"
+msgstr "სერვერთან დაკონტაქტების შეცდომა: %s"
+
+#: ../pastebinit:501
+msgid ""
+"Unable to read or parse the result page, it could be a server timeout or a "
+"change server side, try with another pastebin."
+msgstr ""
+"შედეგი გვერდის წაკითხვა და დამუშავება შეუძლებელია. შეიძლება, სერვერის "
+"მოლოდინის ვადა ამოიწურა, ან რამე შეიცვალა სერვერის მხარეს. სცადეთ სხვა "
+"pastebin."
