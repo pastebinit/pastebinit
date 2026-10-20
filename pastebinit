@@ -43,7 +43,7 @@ except ImportError:
 version = "1.8.0"
 
 # Set the default pastebin
-defaultPB = "bpa.st"
+defaultPB = "paste.opendev.org"
 
 # Now try to override it with a distributor pastebin
 try:
